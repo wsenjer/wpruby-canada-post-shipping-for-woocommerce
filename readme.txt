@@ -103,7 +103,7 @@ Yes. Define `WPRUBY_CPS_API_KEY` and `WPRUBY_CPS_API_SECRET` in wp-config.php an
 
 1. The Canada Post settings: account, ship-from postal code and parcels.
 2. Choosing and renaming the services a shipping zone offers.
-3. Canada Post rates with delivery estimates at checkout.
+3. A Canada Post rate with its delivery estimate at the block checkout.
 
 == External services ==
 

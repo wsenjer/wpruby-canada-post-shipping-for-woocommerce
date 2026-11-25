@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Icon</title>
+<!-- Rendered at 128x128 (1x) and 256x256 (2x) by render.mjs. -->
+<style>
+  * { margin: 0; padding: 0; }
+  html, body { width: 128px; height: 128px; overflow: hidden; background: transparent; }
+  svg { display: block; width: 128px; height: 128px; }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a1712"/>
+      <stop offset="0.55" stop-color="#3a0d0b"/>
+      <stop offset="1" stop-color="#1e0706"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(96 22) rotate(130) scale(80)">
+      <stop stop-color="#eb402e" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#eb402e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="128" height="128" fill="url(#bg)"/>
+  <rect width="128" height="128" fill="url(#glow)"/>
+
+  <!-- Speed lines -->
+  <path d="M14 58h18M8 70h22M16 82h14" stroke="#ff6e5c" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+
+  <!-- Parcel -->
+  <path d="M74 22 108 39v40L74 96 40 79V39z" fill="#fff4ec" fill-opacity="0.12"/>
+  <path d="M74 22 108 39v40L74 96 40 79V39z" stroke="#fff4ec" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M40 39l34 17 34-17M74 56v40" stroke="#fff4ec" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M57 30.5l34 17v12" stroke="#ff6e5c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Rate tick -->
+  <circle cx="102" cy="100" r="17" fill="#d52b1e" stroke="#1e0706" stroke-width="4"/>
+  <path d="M94.5 100.5l5 5 9-10" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</body>
+</html>

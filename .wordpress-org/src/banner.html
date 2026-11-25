@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Banner</title>
+<!-- Rendered at 772x250 (1x) and 1544x500 (2x) by render.mjs. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 772px; height: 250px; overflow: hidden; }
+  body {
+    position: relative;
+    font-family: 'Geist', -apple-system, system-ui, sans-serif;
+    color: #fff;
+    background:
+      radial-gradient(420px 260px at 82% 18%, rgba(235, 64, 46, 0.30), transparent 70%),
+      radial-gradient(360px 220px at 6% 110%, rgba(235, 64, 46, 0.18), transparent 70%),
+      linear-gradient(135deg, #1e0706 0%, #3a0d0b 52%, #561410 100%);
+  }
+  /* Faint grid */
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,120,100,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,120,100,0.06) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: linear-gradient(90deg, rgba(0,0,0,0.9), rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.6));
+  }
+  .route { position: absolute; inset: 0; }
+
+  .copy { position: absolute; left: 40px; top: 44px; width: 360px; }
+  .brand {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 4px 10px 4px 4px; border-radius: 999px;
+    background: rgba(255,110,92,0.12); border: 1px solid rgba(255,110,92,0.38);
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.02em;
+  }
+  .brand svg { width: 20px; height: 20px; display: block; }
+  h1 {
+    margin-top: 15px;
+    font-family: 'Bricolage Grotesque', 'Geist', sans-serif;
+    font-weight: 800; font-size: 33px; line-height: 0.98; letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  h1 .soft { display: block; font-weight: 600; color: #ff7466; font-size: 25px; letter-spacing: -0.01em; margin-top: 6px; }
+  .tagline { margin-top: 12px; font-size: 13.5px; line-height: 1.45; color: #f1dcd6; max-width: 360px; }
+  .chips { margin-top: 12px; display: flex; gap: 6px; }
+  .chip {
+    font-size: 10.5px; font-weight: 500; color: #ffd9d2; white-space: nowrap;
+    padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(255, 110, 92, 0.45);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* Checkout card */
+  .card {
+    position: absolute; right: 94px; top: 25px; width: 256px;
+    background: #fff; color: #1d2327; border-radius: 14px;
+    box-shadow: 0 24px 50px rgba(20, 3, 2, 0.6), 0 2px 6px rgba(20, 3, 2, 0.35);
+    padding: 12px 12px 10px;
+    transform: rotate(-1.5deg);
+  }
+  .card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+  .card-title { font-weight: 600; font-size: 13px; }
+  .card-sub { font-size: 10px; color: #646970; }
+  .rate {
+    display: grid; grid-template-columns: 14px 1fr auto; align-items: center; gap: 9px;
+    padding: 5px 9px; border: 1px solid #e3e5e8; border-radius: 8px; margin-top: 4px;
+  }
+  .rate.on { border-color: #d52b1e; background: #fff2f0; box-shadow: inset 3px 0 0 #d52b1e; }
+  .radio { width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid #8c8f94; position: relative; }
+  .on .radio { border-color: #d52b1e; }
+  .on .radio::after { content: ''; position: absolute; inset: 2.3px; border-radius: 50%; background: #d52b1e; }
+  .name { font-size: 11px; font-weight: 600; line-height: 1.2; }
+  .eta { font-size: 9px; color: #646970; margin-top: 1px; }
+  .price { font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .live {
+    position: absolute; left: -12px; top: -11px;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #d52b1e; color: #fff; font-size: 10px; font-weight: 700;
+    padding: 3px 8px 3px 7px; border-radius: 999px; box-shadow: 0 4px 12px rgba(213,43,30,0.5);
+    transform: rotate(1.5deg);
+  }
+  .live i { width: 6px; height: 6px; border-radius: 50%; background: #fff; display: block; }
+
+  .parcel { position: absolute; right: 14px; bottom: 10px; width: 82px; filter: drop-shadow(0 14px 18px rgba(20, 3, 2, 0.55)); }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <svg class="route" viewBox="0 0 772 250" fill="none" aria-hidden="true">
+    <path id="route" d="M-10 246 C 150 240, 330 250, 450 222 S 650 112, 790 56" stroke="rgba(255,110,92,0.5)" stroke-width="1.6" stroke-dasharray="2 7" stroke-linecap="round"/>
+    <circle cx="712" cy="92.3" r="3.5" fill="#ff6e5c"/>
+    <circle cx="712" cy="92.3" r="8" stroke="rgba(255,110,92,0.45)"/>
+  </svg>
+
+  <div class="copy">
+    <span class="brand">
+      <svg viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="11" fill="#d52b1e"/><path d="M20 8.5 31 14v12L20 31.5 9 26V14z" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><path d="M9 14l11 5.5L31 14M20 19.5v12M14.5 11.2l11 5.6" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/></svg>
+      WPRuby
+    </span>
+    <h1>Canada Post Shipping<span class="soft">for WooCommerce</span></h1>
+    <p class="tagline">Live Canada Post rates at checkout.</p>
+    <div class="chips"><span class="chip">US &amp; international</span><span class="chip">Business or retail rates</span><span class="chip">Delivery estimates</span></div>
+  </div>
+
+  <div class="card">
+    <span class="live"><i></i>Live Canada Post rates</span>
+    <div class="card-head"><span class="card-title">Shipping</span><span class="card-sub">to Calgary, AB</span></div>
+    <div class="rate on"><span class="radio"></span><span><div class="name">Regular Parcel</div><div class="eta">Est. 5 business days</div></span><span class="price">$13.65</span></div>
+    <div class="rate"><span class="radio"></span><span><div class="name">Expedited Parcel</div><div class="eta">Est. 4 business days</div></span><span class="price">$16.00</span></div>
+    <div class="rate"><span class="radio"></span><span><div class="name">Xpresspost</div><div class="eta">Est. 2 business days</div></span><span class="price">$25.00</span></div>
+    <div class="rate"><span class="radio"></span><span><div class="name">Priority</div><div class="eta">Est. 1 business day</div></span><span class="price">$38.40</span></div>
+  </div>
+
+  <svg class="parcel" viewBox="0 0 120 112" fill="none" aria-hidden="true">
+    <path d="M60 6 112 32v50L60 108 8 82V32z" fill="#e8c79a"/>
+    <path d="M60 58 112 32v50L60 108z" fill="#d1a873"/>
+    <path d="M8 32 60 58v50L8 82z" fill="#ddb683"/>
+    <path d="M8 32 60 6l52 26-52 26z" fill="#f2d9b3"/>
+    <path d="M34 19 86 45v14l-8-4V49L26 23z" fill="#d52b1e"/>
+    <path d="M86 45v14l-8-4V49z" fill="#a11d13"/>
+    <rect x="22" y="62" width="22" height="13" rx="2" transform="skewY(26) translate(0 -14)" fill="#fff" opacity="0.92"/>
+  </svg>
+</body>
+</html>

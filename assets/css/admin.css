@@ -7,9 +7,27 @@
 	vertical-align: middle;
 }
 
-.wpruby-cps-services .check-column {
-	width: 2.2em;
-	padding-left: 10px;
+table.wpruby-cps-services thead td.check-column,
+table.wpruby-cps-services thead th.check-column,
+table.wpruby-cps-services tbody td.check-column {
+	width: 24px;
+	padding: 8px 0 8px 12px;
+	vertical-align: middle;
+}
+
+table.wpruby-cps-services tbody td.check-column input[type="checkbox"] {
+	margin: 0;
+	vertical-align: middle;
+}
+
+table.wpruby-cps-services td:last-child,
+table.wpruby-cps-services th:last-child {
+	width: 45%;
+}
+
+.wpruby-cps-services td {
+	padding-top: 6px;
+	padding-bottom: 6px;
 }
 
 .wpruby-cps-services code {
