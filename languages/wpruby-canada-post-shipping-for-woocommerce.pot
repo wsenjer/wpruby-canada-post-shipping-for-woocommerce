@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-25T09:20:35+00:00\n"
+"POT-Creation-Date: 2026-11-25T09:48:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wpruby-canada-post-shipping-for-woocommerce\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #. Plugin URI of the plugin
 #: wpruby-canada-post-shipping-for-woocommerce.php
-msgid "https://wpruby.com/plugin/woocommerce-canada-post-extension-pro/?utm_source=canadapost-lite&utm_medium=pluginuri&utm_campaign=freetopro"
+msgid "https://wordpress.org/plugins/wpruby-canada-post-shipping-for-woocommerce/"
 msgstr ""
 
 #. Description of the plugin
@@ -58,38 +58,6 @@ msgstr ""
 
 #: src/Admin/ConnectionCheck.php:80
 msgid "This is a Test app, so the price is a sample."
-msgstr ""
-
-#: src/Admin/Upsell.php:38
-msgid "Print Canada Post labels from the order screen, one order or in bulk"
-msgstr ""
-
-#: src/Admin/Upsell.php:39
-msgid "End-of-day manifests, pickups and return labels"
-msgstr ""
-
-#: src/Admin/Upsell.php:40
-msgid "Tracking numbers and status updates in order emails and My Account"
-msgstr ""
-
-#: src/Admin/Upsell.php:41
-msgid "Delivery to a post office chosen at checkout, and AddressComplete"
-msgstr ""
-
-#: src/Admin/Upsell.php:42
-msgid "Your own boxes with 3D packing, free shipping thresholds and per-service price adjustments"
-msgstr ""
-
-#: src/Admin/Upsell.php:52
-msgid "More with Canada Post Pro"
-msgstr ""
-
-#: src/Admin/Upsell.php:59
-msgid "See Canada Post Pro"
-msgstr ""
-
-#: src/Admin/Upsell.php:60
-msgid "Your shipping zones keep their settings when you upgrade."
 msgstr ""
 
 #: src/Api/ApiException.php:57
@@ -132,36 +100,42 @@ msgstr ""
 msgid "HTTP %d from Canada Post."
 msgstr ""
 
-#: src/Plugin.php:63
+#: src/Plugin.php:62
 msgid "Settings"
 msgstr ""
 
-#: src/Plugin.php:64
-msgid "Get the Pro version"
-msgstr ""
-
-#: src/Plugin.php:65
+#: src/Plugin.php:63
 msgid "Support"
 msgstr ""
 
-#: src/Plugin.php:102
+#: src/Plugin.php:104
 msgid "Checking…"
 msgstr ""
 
-#: src/Plugin.php:103
+#: src/Plugin.php:105
 msgid "The check could not run. Reload the page and try again."
 msgstr ""
 
-#: src/Plugin.php:117
+#: src/Plugin.php:106
+msgid "Connected"
+msgstr ""
+
+#. translators: 1: services turned on, 2: services in the group
+#: src/Plugin.php:108
+#: src/Shipping/Method.php:194
+msgid "%1$d of %2$d on"
+msgstr ""
+
+#: src/Plugin.php:122
 msgid "Canada Post needs a ship-from postal code in Canada. Enter it in the Canada Post settings, or set a Canadian store address."
 msgstr ""
 
 #. translators: %s: store currency code
-#: src/Plugin.php:123
+#: src/Plugin.php:128
 msgid "Canada Post quotes in CAD, but your store uses %s. Set the CAD exchange rate in the Canada Post settings so customers pay the right amount."
 msgstr ""
 
-#: src/Plugin.php:129
+#: src/Plugin.php:134
 msgid "Canada Post is connected with a Test app: rates are samples and only shop managers see them. Switch to a Production app before customers order."
 msgstr ""
 
@@ -189,299 +163,304 @@ msgstr ""
 msgid "The destination country is missing."
 msgstr ""
 
-#: src/Services.php:55
+#: src/Services.php:54
 msgid "Regular Parcel"
 msgstr ""
 
-#: src/Services.php:56
+#: src/Services.php:55
 msgid "Expedited Parcel"
 msgstr ""
 
-#: src/Services.php:57
+#: src/Services.php:56
 msgid "Xpresspost"
 msgstr ""
 
-#: src/Services.php:58
+#: src/Services.php:57
 msgid "Priority"
 msgstr ""
 
-#: src/Services.php:59
+#: src/Services.php:58
 msgid "Library Books"
 msgstr ""
 
-#: src/Services.php:60
+#: src/Services.php:59
 msgid "Expedited Parcel USA"
 msgstr ""
 
-#: src/Services.php:61
+#: src/Services.php:60
 msgid "Xpresspost USA"
 msgstr ""
 
-#: src/Services.php:62
+#: src/Services.php:61
 msgid "Tracked Packet – USA"
 msgstr ""
 
-#: src/Services.php:63
+#: src/Services.php:62
 msgid "Small Packet USA Air"
 msgstr ""
 
-#: src/Services.php:64
+#: src/Services.php:63
 msgid "Xpresspost International"
 msgstr ""
 
-#: src/Services.php:65
+#: src/Services.php:64
 msgid "Tracked Packet – International"
 msgstr ""
 
-#: src/Services.php:66
+#: src/Services.php:65
 msgid "Small Packet International Air"
 msgstr ""
 
-#: src/Services.php:67
+#: src/Services.php:66
 msgid "Small Packet International Surface"
 msgstr ""
 
-#: src/Services.php:68
+#: src/Services.php:67
 msgid "International Parcel Air"
 msgstr ""
 
-#: src/Services.php:69
+#: src/Services.php:68
 msgid "International Parcel Surface"
 msgstr ""
 
-#: src/Shipping/Method.php:49
-#: src/Shipping/Method.php:56
-#: src/Shipping/Method.php:67
-#: src/Shipping/SettingsSection.php:26
+#: src/Shipping/Method.php:48
+#: src/Shipping/Method.php:55
+#: src/Shipping/Method.php:66
+#: src/Shipping/SettingsSection.php:25
 msgid "Canada Post"
 msgstr ""
 
-#: src/Shipping/Method.php:50
+#: src/Shipping/Method.php:49
 msgid "Live Canada Post rates from your Canada Post account."
 msgstr ""
 
-#: src/Shipping/Method.php:65
+#: src/Shipping/Method.php:64
 msgid "Method title"
 msgstr ""
 
-#: src/Shipping/Method.php:69
+#: src/Shipping/Method.php:68
 msgid "Names this method in the zone list. Customers see the service names, like Expedited Parcel."
 msgstr ""
 
-#: src/Shipping/Method.php:72
+#: src/Shipping/Method.php:71
 msgid "Tax status"
 msgstr ""
 
-#: src/Shipping/Method.php:77
+#: src/Shipping/Method.php:76
 msgid "Taxable"
 msgstr ""
 
-#: src/Shipping/Method.php:78
+#: src/Shipping/Method.php:77
 msgctxt "Tax status"
 msgid "None"
 msgstr ""
 
-#: src/Shipping/Method.php:80
+#: src/Shipping/Method.php:79
 msgid "Canada Post prices include GST/HST/PST. When shipping is taxable, the rate is shown before tax and WooCommerce adds your tax. When it is not, the rate includes Canada Post's tax."
 msgstr ""
 
-#: src/Shipping/Method.php:83
+#: src/Shipping/Method.php:82
 msgid "Services"
 msgstr ""
 
-#: src/Shipping/Method.php:88
+#: src/Shipping/Method.php:87
 msgid "Rate type"
 msgstr ""
 
-#: src/Shipping/Method.php:93
+#: src/Shipping/Method.php:92
 msgid "From the account type"
 msgstr ""
 
-#: src/Shipping/Method.php:94
+#: src/Shipping/Method.php:93
 msgid "Business rates (your contract or Solutions for Small Business prices)"
 msgstr ""
 
-#: src/Shipping/Method.php:95
+#: src/Shipping/Method.php:94
 msgid "Retail rates (post office counter prices)"
 msgstr ""
 
-#: src/Shipping/Method.php:98
+#: src/Shipping/Method.php:97
 msgid "Business rates are what you pay. Retail rates are what a customer would pay at the counter."
 msgstr ""
 
-#: src/Shipping/Method.php:101
+#: src/Shipping/Method.php:100
 msgid "Handling fee"
 msgstr ""
 
-#: src/Shipping/Method.php:106
+#: src/Shipping/Method.php:105
 msgid "A fixed amount added to every rate. Use a negative amount for a discount."
 msgstr ""
 
-#: src/Shipping/Method.php:109
+#: src/Shipping/Method.php:108
 msgid "Handling fee (%)"
 msgstr ""
 
-#: src/Shipping/Method.php:114
+#: src/Shipping/Method.php:113
 msgid "A percentage of the rate, added after the fixed fee. Use a negative value for a discount."
 msgstr ""
 
-#: src/Shipping/Method.php:117
+#: src/Shipping/Method.php:116
 msgid "Delivery estimate"
 msgstr ""
 
-#: src/Shipping/Method.php:119
+#: src/Shipping/Method.php:118
 msgid "Show the expected transit time next to each service"
 msgstr ""
 
-#: src/Shipping/Method.php:154
+#: src/Shipping/Method.php:153
 msgid "Canada"
 msgstr ""
 
-#: src/Shipping/Method.php:155
+#: src/Shipping/Method.php:154
 msgid "United States"
 msgstr ""
 
-#: src/Shipping/Method.php:156
+#: src/Shipping/Method.php:155
 msgid "International"
 msgstr ""
 
-#: src/Shipping/Method.php:167
+#: src/Shipping/Method.php:166
 msgid "Offer"
 msgstr ""
 
-#: src/Shipping/Method.php:168
+#: src/Shipping/Method.php:167
 msgid "Service"
 msgstr ""
 
-#: src/Shipping/Method.php:169
+#: src/Shipping/Method.php:168
 msgid "Name at checkout"
 msgstr ""
 
 #. translators: %s: service name
-#: src/Shipping/Method.php:191
+#: src/Shipping/Method.php:213
 msgid "Name at checkout for %s"
 msgstr ""
 
-#: src/Shipping/Method.php:201
+#: src/Shipping/Method.php:223
 msgid "Customers see only the ticked services that Canada Post can deliver to their address. Leave the name empty to use Canada Post's name."
 msgstr ""
 
 #. translators: %s: link to the Canada Post settings
-#: src/Shipping/Method.php:242
+#: src/Shipping/Method.php:264
 msgid "Customers see no Canada Post rates until you connect your Canada Post account in %s."
 msgstr ""
 
-#: src/Shipping/Method.php:243
+#: src/Shipping/Method.php:265
 msgid "the Canada Post settings"
 msgstr ""
 
 #. translators: 1: number of parcels, 2: quoted services
-#: src/Shipping/Method.php:299
+#: src/Shipping/Method.php:320
 msgid "Canada Post quoted %1$d parcel(s): %2$s"
 msgstr ""
 
-#: src/Shipping/Method.php:301
+#: src/Shipping/Method.php:322
 msgid "no services"
 msgstr ""
 
 #. translators: %d: business days in transit
-#: src/Shipping/Method.php:315
+#: src/Shipping/Method.php:336
 msgid "(est. %d business day)"
 msgid_plural "(est. %d business days)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Shipping/SettingsSection.php:27
+#: src/Shipping/SettingsSection.php:26
 msgid "Connect your Canada Post account and set where parcels ship from. Then add the Canada Post method to your shipping zones."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:53
+#: src/Shipping/SettingsSection.php:52
 msgid "Canada Post account"
 msgstr ""
 
 #. translators: %s: link to the Canada Post Developer Portal
-#: src/Shipping/SettingsSection.php:58
+#: src/Shipping/SettingsSection.php:57
 msgid "Create an app on the %s, add the Rating API product to it, and copy its API key and secret here."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:59
+#: src/Shipping/SettingsSection.php:58
+#: src/Shipping/SettingsSection.php:391
 msgid "Canada Post Developer Portal"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:64
+#: src/Shipping/SettingsSection.php:63
 msgid "App type"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:68
+#: src/Shipping/SettingsSection.php:67
 msgid "Production app (real rates)"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:69
+#: src/Shipping/SettingsSection.php:68
 msgid "Test app (sample rates, shown to shop managers only)"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:71
+#: src/Shipping/SettingsSection.php:70
 msgid "Canada Post decides the type when you create the app. A Test app returns sample prices that are not your real rates."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:74
+#: src/Shipping/SettingsSection.php:73
 msgid "API key"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:78
+#: src/Shipping/SettingsSection.php:77
 msgid "Set in wp-config.php (WPRUBY_CPS_API_KEY)."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:81
+#: src/Shipping/SettingsSection.php:80
 msgid "API secret"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:85
+#: src/Shipping/SettingsSection.php:84
 msgid "Set in wp-config.php (WPRUBY_CPS_API_SECRET)."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:85
+#: src/Shipping/SettingsSection.php:84
 msgid "Stored in your database. Leave empty to keep the saved secret."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:88
+#: src/Shipping/SettingsSection.php:87
 msgid "Customer number"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:91
+#: src/Shipping/SettingsSection.php:90
 msgid "Your Canada Post customer number (up to 10 digits), shown in your Canada Post business account."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:94
+#: src/Shipping/SettingsSection.php:93
 msgid "Account type"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:98
+#: src/Shipping/SettingsSection.php:97
 msgid "Solutions for Small Business (retail rates)"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:99
+#: src/Shipping/SettingsSection.php:98
 msgid "Commercial contract (business rates)"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:103
+#: src/Shipping/SettingsSection.php:102
 msgid "Contract number"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:106
+#: src/Shipping/SettingsSection.php:105
 msgid "Commercial accounts only. Leave empty for Solutions for Small Business."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:109
+#: src/Shipping/SettingsSection.php:108
 msgid "Ship-from postal code"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:113
+#: src/Shipping/SettingsSection.php:112
 msgid "Where your parcels leave from. Leave empty to use the store address when it is in Canada."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:117
+#: src/Shipping/SettingsSection.php:116
 msgid "Parcels"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:118
+msgid "How cart items are packed into parcels, and the weight and size used for products that have none."
 msgstr ""
 
 #: src/Shipping/SettingsSection.php:121
@@ -542,54 +521,147 @@ msgid "Added to every parcel for the box and padding."
 msgstr ""
 
 #: src/Shipping/SettingsSection.php:170
-msgid "Other"
+msgid "Currency and troubleshooting"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:174
+#: src/Shipping/SettingsSection.php:172
+msgid "Currency conversion for stores not in CAD, and logging for when rates don't show up."
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:175
 msgid "CAD exchange rate"
 msgstr ""
 
 #. translators: %s: store currency code
-#: src/Shipping/SettingsSection.php:178
+#: src/Shipping/SettingsSection.php:179
 msgid "Canada Post quotes in CAD. Your store uses %s, so rates are multiplied by this number. Ignored when the store uses CAD."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:181
+#: src/Shipping/SettingsSection.php:182
 msgid "Debug mode"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:183
+#: src/Shipping/SettingsSection.php:184
 msgid "Show Canada Post errors on the cart and checkout to shop managers, and log them"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:185
+#: src/Shipping/SettingsSection.php:186
 msgid "Logs are in WooCommerce → Status → Logs (source: wpruby-canada-post). Customers never see these messages."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:204
+#: src/Shipping/SettingsSection.php:205
 msgid "Saved (hidden)"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:235
+#: src/Shipping/SettingsSection.php:236
 msgid "The ship-from postal code must be a Canadian postal code, like K1A 0B1. The previous value was kept."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:250
+#: src/Shipping/SettingsSection.php:251
 msgid "The customer number has at most 10 digits. The previous value was kept."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:271
-msgid "Check the connection"
+#: src/Shipping/SettingsSection.php:278
+msgid "Connect your Canada Post account"
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:272
-msgid "Save your settings first. The check asks Canada Post for a Regular Parcel rate from your postal code to itself."
+#: src/Shipping/SettingsSection.php:279
+msgid "API key, secret and customer number."
 msgstr ""
 
-#: src/Shipping/SettingsSection.php:274
+#: src/Shipping/SettingsSection.php:284
+msgid "Set your ship-from postal code"
+msgstr ""
+
+#. translators: %s: postal code
+#: src/Shipping/SettingsSection.php:287
+msgid "Parcels ship from %s."
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:288
+msgid "Where your parcels leave from."
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:293
+msgid "Add Canada Post to a shipping zone"
+msgstr ""
+
+#. translators: %d: number of shipping zones
+#: src/Shipping/SettingsSection.php:296
+msgid "Offered in %d zone."
+msgid_plural "Offered in %d zones."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Shipping/SettingsSection.php:297
+msgid "Then pick the services customers can choose."
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:304
+msgid "Not connected"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:306
+msgid "Test app"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:308
+msgid "Production app"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:324
+msgid "Get started"
+msgstr ""
+
+#. translators: 1: steps done, 2: total steps
+#: src/Shipping/SettingsSection.php:328
+msgid "%1$d of %2$d done"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:340
+msgid "Done"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:340
+msgid "To do"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:367
+msgid "Connection test"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:369
+msgid "Asks Canada Post for a 1 kg Regular Parcel rate from your postal code to itself. Save your changes first."
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:373
 msgid "Test connection"
 msgstr ""
 
+#: src/Shipping/SettingsSection.php:379
+msgid "Enter and save your API key, secret and customer number to run the test."
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:387
+msgid "Help"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:390
+msgid "Setup guide"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:392
+msgid "Debug logs"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:393
+msgid "Support forum"
+msgstr ""
+
+#: src/Shipping/SettingsSection.php:394
+msgid "Rate the plugin"
+msgstr ""
+
 #: wpruby-canada-post-shipping-for-woocommerce.php:43
-msgid "Canada Post Pro is active, so the free WPRuby Canada Post Shipping plugin is not running. Your shipping zones keep working with Pro. You can deactivate the free plugin."
+msgid "Another WPRuby Canada Post plugin is active and already provides Canada Post shipping, so WPRuby Canada Post Shipping is paused. Your shipping zones keep working. You can deactivate this plugin."
 msgstr ""

@@ -1,5 +1,378 @@
+/*
+ * WPRuby Canada Post Shipping: admin screens.
+ */
+
+.wpruby-cps-admin {
+	--wpruby-cps-red: #d52b1e;
+	--wpruby-cps-red-soft: #fcecea;
+	--wpruby-cps-border: #dcdcde;
+	--wpruby-cps-muted: #646970;
+	--wpruby-cps-ok: #00733a;
+	--wpruby-cps-ok-soft: #edfaef;
+	--wpruby-cps-warn: #996800;
+	--wpruby-cps-warn-soft: #fcf9e8;
+	--wpruby-cps-error: #b32d2e;
+	--wpruby-cps-error-soft: #fcf0f1;
+	max-width: 1180px;
+	margin-top: 16px;
+}
+
+/* Header */
+
+.wpruby-cps-header {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 20px 24px;
+	margin-bottom: 16px;
+	background: #fff;
+	border: 1px solid var(--wpruby-cps-border);
+	border-top: 4px solid var(--wpruby-cps-red);
+	border-radius: 8px;
+}
+
+.wpruby-cps-header__icon.dashicons {
+	flex: none;
+	width: 48px;
+	height: 48px;
+	font-size: 26px;
+	line-height: 48px;
+	text-align: center;
+	color: var(--wpruby-cps-red);
+	background: var(--wpruby-cps-red-soft);
+	border-radius: 12px;
+}
+
+.wpruby-cps-header__text {
+	flex: 1 1 220px;
+	min-width: 0;
+}
+
+.wpruby-cps-header h2 {
+	margin: 0 0 4px;
+	font-size: 20px;
+	line-height: 1.3;
+}
+
+.wpruby-cps-header p {
+	margin: 0;
+	color: var(--wpruby-cps-muted);
+}
+
+/* Status pill */
+
+.wpruby-cps-pill {
+	flex: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 12px;
+	font-size: 12px;
+	font-weight: 600;
+	border-radius: 999px;
+	white-space: nowrap;
+}
+
+.wpruby-cps-pill::before {
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: currentColor;
+}
+
+.wpruby-cps-pill--ready {
+	color: var(--wpruby-cps-ok);
+	background: var(--wpruby-cps-ok-soft);
+}
+
+.wpruby-cps-pill--test {
+	color: var(--wpruby-cps-warn);
+	background: var(--wpruby-cps-warn-soft);
+}
+
+.wpruby-cps-pill--none {
+	color: var(--wpruby-cps-muted);
+	background: #f0f0f1;
+}
+
+/* Cards */
+
+.wpruby-cps-card {
+	margin-bottom: 16px;
+	padding: 4px 24px 12px;
+	background: #fff;
+	border: 1px solid var(--wpruby-cps-border);
+	border-radius: 8px;
+	scroll-margin-top: 48px;
+}
+
+.wpruby-cps-card__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin: 0 -24px 12px;
+	padding: 14px 24px;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.wpruby-cps-card h3 {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	font-size: 14px;
+}
+
+.wpruby-cps-card h3 .dashicons {
+	color: var(--wpruby-cps-muted);
+}
+
+.wpruby-cps-card__intro {
+	margin: 0 0 4px;
+	color: var(--wpruby-cps-muted);
+}
+
+.wpruby-cps-card .form-table {
+	margin-top: 0;
+}
+
+.wpruby-cps-card .form-table th {
+	width: 220px;
+	padding: 14px 10px 14px 0;
+}
+
+.wpruby-cps-card .form-table td {
+	padding: 10px 0;
+}
+
+.wpruby-cps-card .form-table td p.description {
+	margin-top: 4px;
+}
+
+.wpruby-cps-card .form-table tr:not(:last-child) th,
+.wpruby-cps-card .form-table tr:not(:last-child) td {
+	border-bottom: 1px solid #f6f7f7;
+}
+
+.wpruby-cps-card .form-table input.input-text,
+.wpruby-cps-card .form-table select {
+	width: 100%;
+	max-width: 400px;
+}
+
+/* Layout */
+
+.wpruby-cps-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 300px;
+	gap: 16px;
+	align-items: start;
+}
+
+.wpruby-cps-sidebar {
+	position: sticky;
+	top: 48px;
+}
+
+.wpruby-cps-sidebar .wpruby-cps-card {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.wpruby-cps-sidebar .wpruby-cps-card__head {
+	margin-left: -20px;
+	margin-right: -20px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+@media (max-width: 1100px) {
+	.wpruby-cps-layout {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.wpruby-cps-sidebar {
+		position: static;
+	}
+}
+
+@media (max-width: 782px) {
+	.wpruby-cps-header {
+		flex-wrap: wrap;
+		padding: 16px;
+	}
+
+	.wpruby-cps-card {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.wpruby-cps-card__head {
+		margin-left: -16px;
+		margin-right: -16px;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.wpruby-cps-card .form-table th {
+		width: auto;
+	}
+}
+
+/* Setup checklist */
+
+.wpruby-cps-steps ol {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 12px;
+	margin: 0 0 8px;
+	padding: 0;
+	list-style: none;
+}
+
+.wpruby-cps-steps li {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	margin: 0;
+	padding: 12px;
+	border: 1px solid #f0f0f1;
+	border-radius: 6px;
+}
+
+.wpruby-cps-steps__count {
+	color: var(--wpruby-cps-muted);
+	font-size: 12px;
+}
+
+.wpruby-cps-steps__mark {
+	flex: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 26px;
+	height: 26px;
+	font-weight: 600;
+	color: var(--wpruby-cps-red);
+	border: 2px solid currentColor;
+	border-radius: 50%;
+	box-sizing: border-box;
+}
+
+.wpruby-cps-steps li.is-done .wpruby-cps-steps__mark {
+	color: #fff;
+	background: var(--wpruby-cps-ok);
+	border-color: var(--wpruby-cps-ok);
+}
+
+.wpruby-cps-steps__body {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.wpruby-cps-steps__body a {
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.wpruby-cps-steps li.is-done .wpruby-cps-steps__body a {
+	color: var(--wpruby-cps-muted);
+}
+
+.wpruby-cps-steps__body span {
+	color: var(--wpruby-cps-muted);
+	font-size: 12px;
+}
+
+/* Connection test */
+
+.wpruby-cps-test.button {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.wpruby-cps-test .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.wpruby-cps-test.is-busy .dashicons {
+	animation: wpruby-cps-spin 1s linear infinite;
+}
+
+@keyframes wpruby-cps-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wpruby-cps-test.is-busy .dashicons {
+		animation: none;
+	}
+}
+
+.wpruby-cps-result {
+	margin: 0 0 12px;
+	padding: 10px 12px;
+	color: var(--wpruby-cps-muted);
+	background: #f6f7f7;
+	border-left: 4px solid #c3c4c7;
+	border-radius: 4px;
+}
+
+.wpruby-cps-result[hidden] {
+	display: none;
+}
+
+.wpruby-cps-result.is-ok {
+	color: var(--wpruby-cps-ok);
+	background: var(--wpruby-cps-ok-soft);
+	border-left-color: var(--wpruby-cps-ok);
+}
+
+.wpruby-cps-result.is-error {
+	color: var(--wpruby-cps-error);
+	background: var(--wpruby-cps-error-soft);
+	border-left-color: var(--wpruby-cps-error);
+}
+
+/* Help links */
+
+.wpruby-cps-links {
+	margin: 0 0 8px;
+}
+
+.wpruby-cps-links li {
+	margin: 0;
+}
+
+.wpruby-cps-links a {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 0;
+	text-decoration: none;
+}
+
+.wpruby-cps-links .dashicons {
+	color: var(--wpruby-cps-muted);
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+/* Services table (zone settings) */
+
 .wpruby-cps-services {
 	max-width: 760px;
+	border-radius: 6px;
+	overflow: hidden;
 }
 
 .wpruby-cps-services td,
@@ -25,51 +398,63 @@ table.wpruby-cps-services th:last-child {
 	width: 45%;
 }
 
-.wpruby-cps-services td {
+table.wpruby-cps-services td {
 	padding-top: 6px;
 	padding-bottom: 6px;
 }
 
-.wpruby-cps-services code {
+table.wpruby-cps-services td input.regular-text {
+	width: 100%;
+}
+
+.wpruby-cps-services__code {
 	margin-left: 6px;
+	padding: 1px 6px;
 	font-size: 11px;
+	color: #646970;
+	background: #f0f0f1;
+	border-radius: 3px;
+}
+
+table.wpruby-cps-services tr.wpruby-cps-services__region td,
+table.wpruby-cps-services tr.wpruby-cps-services__region th {
+	background: #f6f7f7;
+	border-top: 1px solid #dcdcde;
 }
 
 .wpruby-cps-services__region th {
 	font-weight: 600;
-	background: #f6f7f7;
 }
 
-#wpruby-cps-test-result {
-	margin-left: 8px;
+.wpruby-cps-services__region label {
+	font-weight: 600;
 }
 
-#wpruby-cps-test-result.wpruby-cps-ok {
-	color: #00733a;
+.wpruby-cps-services__region-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
 }
 
-#wpruby-cps-test-result.wpruby-cps-error {
-	color: #b32d2e;
+.wpruby-cps-services__count {
+	font-weight: 400;
+	font-size: 12px;
+	color: #646970;
 }
 
-.wpruby-cps-upsell {
-	max-width: 760px;
-	margin: 24px 0;
-	padding: 16px 20px;
-	background: #fff;
-	border: 1px solid #c3c4c7;
-	border-left: 4px solid #d52b1e;
+.wpruby-cps-services__row.is-off label,
+.wpruby-cps-services__row.is-off input[type="text"] {
+	opacity: 0.55;
 }
 
-.wpruby-cps-upsell h3 {
-	margin-top: 0;
-}
-
-.wpruby-cps-upsell ul {
-	list-style: disc;
-	margin-left: 20px;
-}
-
-.wpruby-cps-upsell .description {
-	margin-left: 8px;
+/* WordPress doesn't draw the "some selected" state of a checkbox. */
+.wpruby-cps-services__all:indeterminate::before {
+	content: "";
+	display: block;
+	width: 8px;
+	height: 2px;
+	margin: 6px auto 0;
+	background: #2271b1;
+	float: none;
 }

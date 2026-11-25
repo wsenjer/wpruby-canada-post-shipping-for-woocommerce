@@ -1,18 +1,18 @@
 # WPRuby Canada Post Shipping for WooCommerce
 
-Free wordpress.org plugin: live Canada Post rates at WooCommerce checkout, from Canada Post's Rating API (Developer Portal, OAuth 2.0 client credentials). Labels, manifests, tracking, returns and pickups are in [Canada Post Pro](https://wpruby.com/plugin/woocommerce-canada-post-extension-pro/).
+Free wordpress.org plugin: live Canada Post rates at WooCommerce checkout, from Canada Post's Rating API (Developer Portal, OAuth 2.0 client credentials).
 
 - PHP 7.4+, WordPress 6.2+, WooCommerce 8.2+. No runtime dependencies.
-- Method ID `canada_post` and the zone setting keys match Canada Post Pro, so zones carry over on upgrade. While Pro is active, this plugin doesn't load.
+- Method ID `canada_post`; zone settings live in `woocommerce_canada_post_{instance}_settings`.
 - Store-wide settings: WooCommerce → Settings → Shipping → Canada Post (option `woocommerce_canada_post_settings_settings`).
 
 ## Layout
 
-- `wpruby-canada-post-shipping-for-woocommerce.php`: bootstrap (Pro check, autoloader, HPOS and Blocks compatibility).
+- `wpruby-canada-post-shipping-for-woocommerce.php`: bootstrap (conflict check, autoloader, HPOS and Blocks compatibility).
 - `src/Api/Client.php`: token and Get Rates (`POST /rating/v1/prices`), with retries and error parsing.
 - `src/Rates/`: request building and validation, packing, per-parcel quoting and caching.
 - `src/Shipping/Method.php`: the zone method; `src/Shipping/SettingsSection.php`: the settings section.
-- `src/Admin/`: Test connection (AJAX) and the Pro card.
+- `src/Admin/`: Test connection (AJAX).
 
 ## Development
 

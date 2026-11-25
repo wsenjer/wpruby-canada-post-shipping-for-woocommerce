@@ -8,7 +8,6 @@
 namespace WPRuby\CanadaPostShipping\Shipping;
 
 use WC_Shipping_Method;
-use WPRuby\CanadaPostShipping\Admin\Upsell;
 use WPRuby\CanadaPostShipping\Settings;
 
 defined( 'ABSPATH' ) || exit;
@@ -114,8 +113,9 @@ class SettingsSection extends WC_Shipping_Method {
 			),
 
 			'packing_title'    => array(
-				'title' => __( 'Parcels', 'wpruby-canada-post-shipping-for-woocommerce' ),
-				'type'  => 'title',
+				'title'       => __( 'Parcels', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'type'        => 'title',
+				'description' => __( 'How cart items are packed into parcels, and the weight and size used for products that have none.', 'wpruby-canada-post-shipping-for-woocommerce' ),
 			),
 			'packing'          => array(
 				'title'   => __( 'Packing', 'wpruby-canada-post-shipping-for-woocommerce' ),
@@ -167,8 +167,9 @@ class SettingsSection extends WC_Shipping_Method {
 			),
 
 			'other_title'      => array(
-				'title' => __( 'Other', 'wpruby-canada-post-shipping-for-woocommerce' ),
-				'type'  => 'title',
+				'title'       => __( 'Currency and troubleshooting', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'type'        => 'title',
+				'description' => __( 'Currency conversion for stores not in CAD, and logging for when rates don\'t show up.', 'wpruby-canada-post-shipping-for-woocommerce' ),
 			),
 			'exchange_rate'    => array(
 				'title'       => __( 'CAD exchange rate', 'wpruby-canada-post-shipping-for-woocommerce' ),
@@ -263,18 +264,197 @@ class SettingsSection extends WC_Shipping_Method {
 	}
 
 	/**
-	 * The settings, a "Test connection" button and what Pro adds.
+	 * The settings page: a header with the connection status, a setup checklist, the
+	 * settings in cards, and a sidebar with the connection test and help links.
 	 */
 	public function admin_options() {
-		parent::admin_options();
+		$settings  = new Settings();
+		$connected = $settings->has_credentials();
+		$postcode  = $settings->origin_postcode();
+		$zones     = self::zones_using_method();
+		$steps     = array(
+			array(
+				'done'  => $connected,
+				'title' => __( 'Connect your Canada Post account', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'text'  => __( 'API key, secret and customer number.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'link'  => '#' . $this->get_field_key( 'account_title' ),
+			),
+			array(
+				'done'  => '' !== $postcode,
+				'title' => __( 'Set your ship-from postal code', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'text'  => '' !== $postcode
+					/* translators: %s: postal code */
+					? sprintf( __( 'Parcels ship from %s.', 'wpruby-canada-post-shipping-for-woocommerce' ), $postcode )
+					: __( 'Where your parcels leave from.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'link'  => '#' . $this->get_field_key( 'origin_postcode' ),
+			),
+			array(
+				'done'  => $zones > 0,
+				'title' => __( 'Add Canada Post to a shipping zone', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'text'  => $zones > 0
+					/* translators: %d: number of shipping zones */
+					? sprintf( _n( 'Offered in %d zone.', 'Offered in %d zones.', $zones, 'wpruby-canada-post-shipping-for-woocommerce' ), $zones )
+					: __( 'Then pick the services customers can choose.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'link'  => admin_url( 'admin.php?page=wc-settings&tab=shipping' ),
+			),
+		);
+		$done = count( array_filter( wp_list_pluck( $steps, 'done' ) ) );
+
+		if ( ! $connected ) {
+			$status = array( 'none', __( 'Not connected', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+		} elseif ( $settings->is_test_app() ) {
+			$status = array( 'test', __( 'Test app', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+		} else {
+			$status = array( 'ready', __( 'Production app', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+		}
 		?>
-		<h2><?php esc_html_e( 'Check the connection', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></h2>
-		<p><?php esc_html_e( 'Save your settings first. The check asks Canada Post for a Regular Parcel rate from your postal code to itself.', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></p>
-		<p>
-			<button type="button" class="button" id="wpruby-cps-test-connection"><?php esc_html_e( 'Test connection', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></button>
-			<span id="wpruby-cps-test-result" role="status" aria-live="polite"></span>
-		</p>
+		<div class="wpruby-cps-admin">
+			<div class="wpruby-cps-header">
+				<span class="wpruby-cps-header__icon dashicons dashicons-airplane" aria-hidden="true"></span>
+				<div class="wpruby-cps-header__text">
+					<h2><?php echo esc_html( $this->get_method_title() ); ?></h2>
+					<p><?php echo esc_html( $this->get_method_description() ); ?></p>
+				</div>
+				<span class="wpruby-cps-pill wpruby-cps-pill--<?php echo esc_attr( $status[0] ); ?>" id="wpruby-cps-status"><?php echo esc_html( $status[1] ); ?></span>
+			</div>
+
+			<?php if ( $done < count( $steps ) ) : ?>
+				<div class="wpruby-cps-card wpruby-cps-steps">
+					<div class="wpruby-cps-card__head">
+						<h3><?php esc_html_e( 'Get started', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></h3>
+						<span class="wpruby-cps-steps__count">
+							<?php
+							/* translators: 1: steps done, 2: total steps */
+							echo esc_html( sprintf( __( '%1$d of %2$d done', 'wpruby-canada-post-shipping-for-woocommerce' ), $done, count( $steps ) ) );
+							?>
+						</span>
+					</div>
+					<ol>
+						<?php foreach ( $steps as $i => $step ) : ?>
+							<li class="<?php echo $step['done'] ? 'is-done' : ''; ?>">
+								<span class="wpruby-cps-steps__mark" aria-hidden="true"><?php echo $step['done'] ? '<span class="dashicons dashicons-yes"></span>' : esc_html( (string) ( $i + 1 ) ); ?></span>
+								<span class="wpruby-cps-steps__body">
+									<a href="<?php echo esc_url( $step['link'] ); ?>"><?php echo esc_html( $step['title'] ); ?></a>
+									<span><?php echo esc_html( $step['text'] ); ?></span>
+								</span>
+								<span class="screen-reader-text"><?php echo $step['done'] ? esc_html__( 'Done', 'wpruby-canada-post-shipping-for-woocommerce' ) : esc_html__( 'To do', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></span>
+							</li>
+						<?php endforeach; ?>
+					</ol>
+				</div>
+			<?php endif; ?>
+
+			<div class="wpruby-cps-layout">
+				<div class="wpruby-cps-main">
+					<?php foreach ( $this->field_groups() as $group ) : ?>
+						<section class="wpruby-cps-card" id="<?php echo esc_attr( $this->get_field_key( $group['key'] ) ); ?>">
+							<div class="wpruby-cps-card__head">
+								<h3><span class="dashicons <?php echo esc_attr( $group['icon'] ); ?>" aria-hidden="true"></span><?php echo esc_html( $group['title'] ); ?></h3>
+							</div>
+							<?php if ( '' !== $group['description'] ) : ?>
+								<p class="wpruby-cps-card__intro"><?php echo wp_kses_post( $group['description'] ); ?></p>
+							<?php endif; ?>
+							<table class="form-table">
+								<?php echo $this->generate_settings_html( $group['fields'], false ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce's escaped field markup. ?>
+							</table>
+						</section>
+					<?php endforeach; ?>
+				</div>
+
+				<aside class="wpruby-cps-sidebar">
+					<div class="wpruby-cps-card">
+						<div class="wpruby-cps-card__head">
+							<h3><span class="dashicons dashicons-admin-plugins" aria-hidden="true"></span><?php esc_html_e( 'Connection test', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></h3>
+						</div>
+						<p><?php esc_html_e( 'Asks Canada Post for a 1 kg Regular Parcel rate from your postal code to itself. Save your changes first.', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></p>
+						<p>
+							<button type="button" class="button button-secondary wpruby-cps-test" id="wpruby-cps-test-connection" <?php disabled( ! $connected ); ?>>
+								<span class="dashicons dashicons-update" aria-hidden="true"></span>
+								<?php esc_html_e( 'Test connection', 'wpruby-canada-post-shipping-for-woocommerce' ); ?>
+							</button>
+						</p>
+						<div id="wpruby-cps-test-result" class="wpruby-cps-result" role="status" aria-live="polite"<?php echo $connected ? ' hidden' : ''; ?>>
+							<?php
+							if ( ! $connected ) {
+								esc_html_e( 'Enter and save your API key, secret and customer number to run the test.', 'wpruby-canada-post-shipping-for-woocommerce' );
+							}
+							?>
+						</div>
+					</div>
+
+					<div class="wpruby-cps-card">
+						<div class="wpruby-cps-card__head">
+							<h3><span class="dashicons dashicons-sos" aria-hidden="true"></span><?php esc_html_e( 'Help', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></h3>
+						</div>
+						<ul class="wpruby-cps-links">
+							<li><a href="https://wpruby.com/canada-post-shipping-rates-woocommerce/" target="_blank" rel="noopener"><span class="dashicons dashicons-book" aria-hidden="true"></span><?php esc_html_e( 'Setup guide', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></a></li>
+							<li><a href="https://developer-developpeur.canadapost-postescanada.ca/devportal-portaildesdeveloppeurs/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-admin-network" aria-hidden="true"></span><?php esc_html_e( 'Canada Post Developer Portal', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></a></li>
+							<li><a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-status&tab=logs&source=wpruby-canada-post' ) ); ?>"><span class="dashicons dashicons-media-text" aria-hidden="true"></span><?php esc_html_e( 'Debug logs', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></a></li>
+							<li><a href="https://wordpress.org/support/plugin/wpruby-canada-post-shipping-for-woocommerce/" target="_blank" rel="noopener"><span class="dashicons dashicons-format-chat" aria-hidden="true"></span><?php esc_html_e( 'Support forum', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></a></li>
+							<li><a href="https://wordpress.org/support/plugin/wpruby-canada-post-shipping-for-woocommerce/reviews/#new-post" target="_blank" rel="noopener"><span class="dashicons dashicons-star-filled" aria-hidden="true"></span><?php esc_html_e( 'Rate the plugin', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></a></li>
+						</ul>
+					</div>
+				</aside>
+			</div>
+		</div>
 		<?php
-		Upsell::card( 'settings' );
+	}
+
+	/**
+	 * The form fields split at each title field, for one card per section.
+	 *
+	 * @return array[] key, title, description, icon, fields.
+	 */
+	private function field_groups(): array {
+		$icons  = array(
+			'account_title' => 'dashicons-admin-network',
+			'packing_title' => 'dashicons-archive',
+			'other_title'   => 'dashicons-admin-tools',
+		);
+		$groups = array();
+		foreach ( $this->get_form_fields() as $key => $field ) {
+			if ( 'title' === ( $field['type'] ?? '' ) ) {
+				$groups[] = array(
+					'key'         => $key,
+					'title'       => (string) $field['title'],
+					'description' => (string) ( $field['description'] ?? '' ),
+					'icon'        => $icons[ $key ] ?? 'dashicons-admin-generic',
+					'fields'      => array(),
+				);
+				continue;
+			}
+			if ( ! $groups ) {
+				$groups[] = array(
+					'key'         => 'general',
+					'title'       => '',
+					'description' => '',
+					'icon'        => 'dashicons-admin-generic',
+					'fields'      => array(),
+				);
+			}
+			$groups[ count( $groups ) - 1 ]['fields'][ $key ] = $field;
+		}
+		return $groups;
+	}
+
+	/**
+	 * How many shipping zones (including "Locations not covered") offer Canada Post.
+	 */
+	public static function zones_using_method(): int {
+		if ( ! class_exists( \WC_Shipping_Zones::class ) ) {
+			return 0;
+		}
+		$zones   = array_column( \WC_Shipping_Zones::get_zones(), 'shipping_methods' );
+		$zones[] = ( new \WC_Shipping_Zone( 0 ) )->get_shipping_methods();
+		$count   = 0;
+		foreach ( $zones as $methods ) {
+			foreach ( (array) $methods as $method ) {
+				if ( Method::ID === $method->id && 'yes' === $method->enabled ) {
+					++$count;
+					break;
+				}
+			}
+		}
+		return $count;
 	}
 }

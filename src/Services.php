@@ -11,7 +11,6 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Service codes, Canada Post's names for them and the destinations they serve.
- * The codes and the order match Canada Post Pro, so zone settings carry over.
  */
 class Services {
 
@@ -93,7 +92,7 @@ class Services {
 	}
 
 	/**
-	 * Default per-zone service settings, in the format Canada Post Pro uses.
+	 * Default per-zone service settings.
 	 *
 	 * @return array<string,array>
 	 */

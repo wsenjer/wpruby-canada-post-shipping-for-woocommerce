@@ -2,8 +2,8 @@
 /**
  * Uninstall: removes the store-wide settings and cached tokens and rates.
  *
- * Zone settings (woocommerce_canada_post_{n}_settings) are kept: Canada Post Pro uses
- * them too, and WooCommerce deletes them with the zone.
+ * Zone settings (woocommerce_canada_post_{n}_settings) are left to WooCommerce, which
+ * deletes them with the zone.
  *
  * @package WPRuby\CanadaPostShipping
  */

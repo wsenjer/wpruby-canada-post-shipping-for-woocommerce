@@ -19,8 +19,7 @@ use WPRuby\CanadaPostShipping\Settings;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Live Canada Post rates for the zone. The method ID and the setting keys match
- * Canada Post Pro, so zones keep their settings after an upgrade.
+ * Live Canada Post rates for the zone.
  */
 class Method extends WC_Shipping_Method {
 
@@ -170,22 +169,45 @@ class Method extends WC_Shipping_Method {
 						</tr>
 					</thead>
 					<?php foreach ( $regions as $region => $region_name ) : ?>
-						<tbody>
-							<tr class="wpruby-cps-services__region"><th colspan="3"><?php echo esc_html( $region_name ); ?></th></tr>
+						<?php
+						$region_rows = array_filter(
+							$rows,
+							static function ( $code ) use ( $region ) {
+								return Services::REGIONS[ $code ] === $region;
+							},
+							ARRAY_FILTER_USE_KEY
+						);
+						$region_on   = count( array_filter( wp_list_pluck( $region_rows, 'enabled' ) ) );
+						$all_id      = $field . '_all_' . $region;
+						?>
+						<tbody class="wpruby-cps-services__group">
+							<tr class="wpruby-cps-services__region">
+								<td class="check-column">
+									<input type="checkbox" class="wpruby-cps-services__all" id="<?php echo esc_attr( $all_id ); ?>" <?php checked( count( $region_rows ) === $region_on ); ?>>
+								</td>
+								<th colspan="2">
+									<span class="wpruby-cps-services__region-head">
+									<label for="<?php echo esc_attr( $all_id ); ?>"><?php echo esc_html( $region_name ); ?></label>
+									<span class="wpruby-cps-services__count" data-total="<?php echo esc_attr( (string) count( $region_rows ) ); ?>">
+										<?php
+										/* translators: 1: services turned on, 2: services in the group */
+										echo esc_html( sprintf( __( '%1$d of %2$d on', 'wpruby-canada-post-shipping-for-woocommerce' ), $region_on, count( $region_rows ) ) );
+										?>
+									</span>
+									</span>
+								</th>
+							</tr>
 							<?php
-							foreach ( $rows as $code => $row ) :
-								if ( Services::REGIONS[ $code ] !== $region ) {
-									continue;
-								}
+							foreach ( $region_rows as $code => $row ) :
 								$id = $field . '_' . str_replace( '.', '_', $code );
 								?>
-								<tr>
+								<tr class="wpruby-cps-services__row<?php echo empty( $row['enabled'] ) ? ' is-off' : ''; ?>">
 									<td class="check-column">
-										<input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( "{$field}[{$code}][enabled]" ); ?>" value="1" <?php checked( ! empty( $row['enabled'] ) ); ?>>
+										<input type="checkbox" class="wpruby-cps-services__toggle" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( "{$field}[{$code}][enabled]" ); ?>" value="1" <?php checked( ! empty( $row['enabled'] ) ); ?>>
 									</td>
 									<td>
 										<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $names[ $code ] ); ?></label>
-										<code><?php echo esc_html( $code ); ?></code>
+										<code class="wpruby-cps-services__code"><?php echo esc_html( $code ); ?></code>
 									</td>
 									<td>
 										<input type="text" class="regular-text" name="<?php echo esc_attr( "{$field}[{$code}][name]" ); ?>" value="<?php echo esc_attr( (string) $row['name'] ); ?>" placeholder="<?php echo esc_attr( $names[ $code ] ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: service name */ __( 'Name at checkout for %s', 'wpruby-canada-post-shipping-for-woocommerce' ), $names[ $code ] ) ); ?>">
@@ -206,8 +228,8 @@ class Method extends WC_Shipping_Method {
 	}
 
 	/**
-	 * Keep known services only. Price adjustments and the order (set in Canada Post Pro)
-	 * are passed through unchanged.
+	 * Keep known services only. Price adjustments and the order aren't edited
+	 * here and are passed through unchanged.
 	 *
 	 * @param string $key   Field key.
 	 * @param mixed  $value Posted value.
@@ -230,7 +252,7 @@ class Method extends WC_Shipping_Method {
 	}
 
 	/**
-	 * The zone settings, then what Canada Post Pro adds.
+	 * The zone settings, with a warning while the account isn't connected.
 	 */
 	public function admin_options() {
 		parent::admin_options();
@@ -244,7 +266,6 @@ class Method extends WC_Shipping_Method {
 				)
 			) . '</p></div>';
 		}
-		\WPRuby\CanadaPostShipping\Admin\Upsell::card( 'zone-settings' );
 	}
 
 	/**

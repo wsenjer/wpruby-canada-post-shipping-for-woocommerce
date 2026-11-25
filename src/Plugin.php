@@ -8,7 +8,6 @@
 namespace WPRuby\CanadaPostShipping;
 
 use WPRuby\CanadaPostShipping\Admin\ConnectionCheck;
-use WPRuby\CanadaPostShipping\Admin\Upsell;
 use WPRuby\CanadaPostShipping\Shipping\Method;
 use WPRuby\CanadaPostShipping\Shipping\SettingsSection;
 
@@ -54,14 +53,13 @@ class Plugin {
 	}
 
 	/**
-	 * Settings first, then Pro and support.
+	 * Settings first, then support.
 	 *
 	 * @param array $links Plugin row links.
 	 */
 	public function action_links( $links ): array {
 		$links = (array) $links;
 		array_unshift( $links, '<a href="' . esc_url( self::settings_url() ) . '">' . esc_html__( 'Settings', 'wpruby-canada-post-shipping-for-woocommerce' ) . '</a>' );
-		$links[] = '<a href="' . esc_url( Upsell::url( 'plugins' ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Get the Pro version', 'wpruby-canada-post-shipping-for-woocommerce' ) . '</a>';
 		$links[] = '<a href="https://wordpress.org/support/plugin/wpruby-canada-post-shipping-for-woocommerce/" target="_blank" rel="noopener">' . esc_html__( 'Support', 'wpruby-canada-post-shipping-for-woocommerce' ) . '</a>';
 		return $links;
 	}
@@ -77,6 +75,10 @@ class Plugin {
 		if ( SettingsSection::ID === sanitize_key( wp_unslash( $_GET['section'] ?? '' ) ) ) {
 			return true;
 		}
+		// The zone screen, where the method's settings open in a modal.
+		if ( isset( $_GET['zone_id'] ) ) {
+			return true;
+		}
 		$instance_id = absint( $_GET['instance_id'] ?? 0 );
 		// phpcs:enable
 		if ( ! $instance_id || ! class_exists( \WC_Shipping_Zones::class ) ) {
@@ -90,17 +92,20 @@ class Plugin {
 		if ( ! $this->is_own_screen() ) {
 			return;
 		}
-		wp_enqueue_style( 'wpruby-cps-admin', WPRUBY_CPS_URL . 'assets/css/admin.css', array(), WPRUBY_CPS_VERSION );
+		wp_enqueue_style( 'wpruby-cps-admin', WPRUBY_CPS_URL . 'assets/css/admin.css', array( 'dashicons' ), WPRUBY_CPS_VERSION );
 		wp_enqueue_script( 'wpruby-cps-admin', WPRUBY_CPS_URL . 'assets/js/admin.js', array(), WPRUBY_CPS_VERSION, true );
 		wp_localize_script(
 			'wpruby-cps-admin',
 			'wprubyCps',
 			array(
-				'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
-				'action'   => ConnectionCheck::ACTION,
-				'nonce'    => wp_create_nonce( ConnectionCheck::ACTION ),
-				'checking' => __( 'Checking…', 'wpruby-canada-post-shipping-for-woocommerce' ),
-				'failed'   => __( 'The check could not run. Reload the page and try again.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
+				'action'    => ConnectionCheck::ACTION,
+				'nonce'     => wp_create_nonce( ConnectionCheck::ACTION ),
+				'checking'  => __( 'Checking…', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'failed'    => __( 'The check could not run. Reload the page and try again.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'connected' => __( 'Connected', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				/* translators: 1: services turned on, 2: services in the group */
+				'countOn'   => __( '%1$d of %2$d on', 'wpruby-canada-post-shipping-for-woocommerce' ),
 			)
 		);
 	}

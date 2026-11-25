@@ -9,7 +9,6 @@ define( 'WPRUBY_CPS_VERSION', 'test' );
 define( 'WPRUBY_CPS_FILE', dirname( __DIR__ ) . '/wpruby-canada-post-shipping-for-woocommerce.php' );
 define( 'WPRUBY_CPS_DIR', dirname( __DIR__ ) . '/' );
 define( 'WPRUBY_CPS_URL', 'https://example.test/wp-content/plugins/wpruby-canada-post-shipping-for-woocommerce/' );
-define( 'WPRUBY_CPS_PRO_URL', 'https://wpruby.com/plugin/woocommerce-canada-post-extension-pro/' );
 
 class TestState {
 	public static $options;
