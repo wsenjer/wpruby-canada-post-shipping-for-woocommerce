@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.1', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - name: Lint
+        run: find . -name '*.php' -not -path './vendor-bin/*' -print0 | xargs -0 -n1 php -l
+      - name: Install PHPUnit
+        run: composer install --working-dir=vendor-bin/phpunit --no-interaction --no-progress
+      - name: Unit tests
+        run: vendor-bin/phpunit/vendor/bin/phpunit
+
+  package:
+    runs-on: ubuntu-latest
+    needs: php
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the zip
+        run: make pack
+      - name: Check the zip contents
+        run: |
+          unzip -l wpruby-canada-post-shipping-for-woocommerce.zip > contents.txt
+          grep -q 'wpruby-canada-post-shipping-for-woocommerce/wpruby-canada-post-shipping-for-woocommerce.php' contents.txt
+          grep -q 'wpruby-canada-post-shipping-for-woocommerce/readme.txt' contents.txt
+          ! grep -E '/(tests|vendor-bin|\.github|\.wordpress-org)/' contents.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wpruby-canada-post-shipping-for-woocommerce
+          path: wpruby-canada-post-shipping-for-woocommerce.zip

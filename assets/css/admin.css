@@ -1,0 +1,57 @@
+.wpruby-cps-services {
+	max-width: 760px;
+}
+
+.wpruby-cps-services td,
+.wpruby-cps-services th {
+	vertical-align: middle;
+}
+
+.wpruby-cps-services .check-column {
+	width: 2.2em;
+	padding-left: 10px;
+}
+
+.wpruby-cps-services code {
+	margin-left: 6px;
+	font-size: 11px;
+}
+
+.wpruby-cps-services__region th {
+	font-weight: 600;
+	background: #f6f7f7;
+}
+
+#wpruby-cps-test-result {
+	margin-left: 8px;
+}
+
+#wpruby-cps-test-result.wpruby-cps-ok {
+	color: #00733a;
+}
+
+#wpruby-cps-test-result.wpruby-cps-error {
+	color: #b32d2e;
+}
+
+.wpruby-cps-upsell {
+	max-width: 760px;
+	margin: 24px 0;
+	padding: 16px 20px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-left: 4px solid #d52b1e;
+}
+
+.wpruby-cps-upsell h3 {
+	margin-top: 0;
+}
+
+.wpruby-cps-upsell ul {
+	list-style: disc;
+	margin-left: 20px;
+}
+
+.wpruby-cps-upsell .description {
+	margin-left: 8px;
+}
