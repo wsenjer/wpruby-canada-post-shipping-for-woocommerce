@@ -406,8 +406,10 @@ table.wpruby-cps-services td {
 	padding-bottom: 6px;
 }
 
-table.wpruby-cps-services td input.regular-text {
+/* Beats WooCommerce's "table.form-table table input[type=text] { width: auto }", which cuts off long names. */
+.woocommerce table.form-table table.wpruby-cps-services td input.regular-text {
 	width: 100%;
+	max-width: none;
 }
 
 .wpruby-cps-services__code {
