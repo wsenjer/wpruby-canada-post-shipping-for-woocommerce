@@ -30,6 +30,7 @@ Show your customers live Canada Post shipping rates at checkout, quoted from you
 
 * [How to show Canada Post shipping rates at WooCommerce checkout](https://wpruby.com/canada-post-shipping-rates-woocommerce/)
 * [Support forum](https://wordpress.org/support/plugin/wpruby-canada-post-shipping-for-woocommerce/)
+* [Source code on GitHub](https://github.com/wsenjer/wpruby-canada-post-shipping-for-woocommerce)
 
 == Installation ==
 
@@ -100,6 +101,8 @@ Canada Post's [terms of use](https://www.canadapost-postescanada.ca/cpc/en/suppo
 == Source code ==
 
 The plugin ships no compiled or minified code. The PHP, JavaScript and CSS in the plugin are the source.
+
+Development happens on GitHub: [github.com/wsenjer/wpruby-canada-post-shipping-for-woocommerce](https://github.com/wsenjer/wpruby-canada-post-shipping-for-woocommerce). Bug reports and pull requests are welcome.
 
 == Changelog ==
 
