@@ -29,7 +29,7 @@ class ConnectionCheck {
 	public static function handle(): void {
 		check_ajax_referer( self::ACTION );
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'wpruby-canada-post-shipping-for-woocommerce' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'wpruby-shipping-rates-canada-post' ) ), 403 );
 		}
 
 		$result = self::run( new Settings() );
@@ -46,7 +46,7 @@ class ConnectionCheck {
 		if ( ! $settings->has_credentials() ) {
 			return array(
 				'ok'      => false,
-				'message' => __( 'Enter the API key, API secret and customer number, then save.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'message' => __( 'Enter the API key, API secret and customer number, then save.', 'wpruby-shipping-rates-canada-post' ),
 			);
 		}
 
@@ -66,18 +66,18 @@ class ConnectionCheck {
 		if ( ! $quotes ) {
 			return array(
 				'ok'      => false,
-				'message' => __( 'Connected, but Canada Post returned no Regular Parcel rate. Check the customer number and the ship-from postal code.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'message' => __( 'Connected, but Canada Post returned no Regular Parcel rate. Check the customer number and the ship-from postal code.', 'wpruby-shipping-rates-canada-post' ),
 			);
 		}
 
 		$quote   = reset( $quotes );
 		$message = sprintf(
 			/* translators: %s: price in CAD */
-			__( 'Connected. Regular Parcel, 1 kg, to your own postal code: %s CAD including tax.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+			__( 'Connected. Regular Parcel, 1 kg, to your own postal code: %s CAD including tax.', 'wpruby-shipping-rates-canada-post' ),
 			number_format_i18n( $quote['due'], 2 )
 		);
 		if ( $settings->is_test_app() ) {
-			$message .= ' ' . __( 'This is a Test app, so the price is a sample.', 'wpruby-canada-post-shipping-for-woocommerce' );
+			$message .= ' ' . __( 'This is a Test app, so the price is a sample.', 'wpruby-shipping-rates-canada-post' );
 		}
 		return array(
 			'ok'      => true,

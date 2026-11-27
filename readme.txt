@@ -1,4 +1,4 @@
-=== WPRuby Canada Post Shipping for WooCommerce ===
+=== WPRuby Shipping Rates for Canada Post and WooCommerce ===
 Contributors: waseem_senjer, wprubyplugins
 Tags: canada post, shipping rates, woocommerce shipping, canada, shipping calculator
 Requires at least: 6.2
@@ -29,15 +29,15 @@ Show your customers live Canada Post shipping rates at checkout, quoted from you
 = Links =
 
 * [How to show Canada Post shipping rates at WooCommerce checkout](https://wpruby.com/canada-post-shipping-rates-woocommerce/)
-* [Support forum](https://wordpress.org/support/plugin/wpruby-canada-post-shipping-for-woocommerce/)
-* [Source code on GitHub](https://github.com/wsenjer/wpruby-canada-post-shipping-for-woocommerce)
+* [Support forum](https://wordpress.org/support/plugin/wpruby-shipping-rates-canada-post/)
+* [Source code on GitHub](https://github.com/wsenjer/wpruby-shipping-rates-canada-post)
 
 == Installation ==
 
 = From your WordPress dashboard =
 
 1. Go to Plugins → Add New.
-2. Search for "WPRuby Canada Post Shipping".
+2. Search for "WPRuby Shipping Rates for Canada Post".
 3. Click Install Now, then Activate.
 
 = After activation =
@@ -102,7 +102,7 @@ Canada Post's [terms of use](https://www.canadapost-postescanada.ca/cpc/en/suppo
 
 The plugin ships no compiled or minified code. The PHP, JavaScript and CSS in the plugin are the source.
 
-Development happens on GitHub: [github.com/wsenjer/wpruby-canada-post-shipping-for-woocommerce](https://github.com/wsenjer/wpruby-canada-post-shipping-for-woocommerce). Bug reports and pull requests are welcome.
+Development happens on GitHub: [github.com/wsenjer/wpruby-shipping-rates-canada-post](https://github.com/wsenjer/wpruby-shipping-rates-canada-post). Bug reports and pull requests are welcome.
 
 == Changelog ==
 

@@ -59,8 +59,8 @@ class Plugin {
 	 */
 	public function action_links( $links ): array {
 		$links = (array) $links;
-		array_unshift( $links, '<a href="' . esc_url( self::settings_url() ) . '">' . esc_html__( 'Settings', 'wpruby-canada-post-shipping-for-woocommerce' ) . '</a>' );
-		$links[] = '<a href="https://wordpress.org/support/plugin/wpruby-canada-post-shipping-for-woocommerce/" target="_blank" rel="noopener">' . esc_html__( 'Support', 'wpruby-canada-post-shipping-for-woocommerce' ) . '</a>';
+		array_unshift( $links, '<a href="' . esc_url( self::settings_url() ) . '">' . esc_html__( 'Settings', 'wpruby-shipping-rates-canada-post' ) . '</a>' );
+		$links[] = '<a href="https://wordpress.org/support/plugin/wpruby-shipping-rates-canada-post/" target="_blank" rel="noopener">' . esc_html__( 'Support', 'wpruby-shipping-rates-canada-post' ) . '</a>';
 		return $links;
 	}
 
@@ -101,11 +101,11 @@ class Plugin {
 				'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
 				'action'    => ConnectionCheck::ACTION,
 				'nonce'     => wp_create_nonce( ConnectionCheck::ACTION ),
-				'checking'  => __( 'Checking…', 'wpruby-canada-post-shipping-for-woocommerce' ),
-				'failed'    => __( 'The check could not run. Reload the page and try again.', 'wpruby-canada-post-shipping-for-woocommerce' ),
-				'connected' => __( 'Connected', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'checking'  => __( 'Checking…', 'wpruby-shipping-rates-canada-post' ),
+				'failed'    => __( 'The check could not run. Reload the page and try again.', 'wpruby-shipping-rates-canada-post' ),
+				'connected' => __( 'Connected', 'wpruby-shipping-rates-canada-post' ),
 				/* translators: 1: services turned on, 2: services in the group */
-				'countOn'   => __( '%1$d of %2$d on', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'countOn'   => __( '%1$d of %2$d on', 'wpruby-shipping-rates-canada-post' ),
 			)
 		);
 	}
@@ -119,19 +119,19 @@ class Plugin {
 		}
 		$settings = new Settings();
 		if ( $settings->has_credentials() && '' === $settings->origin_postcode() ) {
-			echo '<div class="notice notice-warning"><p>' . esc_html__( 'Canada Post needs a ship-from postal code in Canada. Enter it in the Canada Post settings, or set a Canadian store address.', 'wpruby-canada-post-shipping-for-woocommerce' ) . '</p></div>';
+			echo '<div class="notice notice-warning"><p>' . esc_html__( 'Canada Post needs a ship-from postal code in Canada. Enter it in the Canada Post settings, or set a Canadian store address.', 'wpruby-shipping-rates-canada-post' ) . '</p></div>';
 		}
 		if ( 'CAD' !== get_woocommerce_currency() && 1.0 === $settings->exchange_rate() ) {
 			echo '<div class="notice notice-warning"><p>' . esc_html(
 				sprintf(
 					/* translators: %s: store currency code */
-					__( 'Canada Post quotes in CAD, but your store uses %s. Set the CAD exchange rate in the Canada Post settings so customers pay the right amount.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+					__( 'Canada Post quotes in CAD, but your store uses %s. Set the CAD exchange rate in the Canada Post settings so customers pay the right amount.', 'wpruby-shipping-rates-canada-post' ),
 					get_woocommerce_currency()
 				)
 			) . '</p></div>';
 		}
 		if ( $settings->is_test_app() ) {
-			echo '<div class="notice notice-info"><p>' . esc_html__( 'Canada Post is connected with a Test app: rates are samples and only shop managers see them. Switch to a Production app before customers order.', 'wpruby-canada-post-shipping-for-woocommerce' ) . '</p></div>';
+			echo '<div class="notice notice-info"><p>' . esc_html__( 'Canada Post is connected with a Test app: rates are samples and only shop managers see them. Switch to a Production app before customers order.', 'wpruby-shipping-rates-canada-post' ) . '</p></div>';
 		}
 	}
 }

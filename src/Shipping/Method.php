@@ -45,14 +45,14 @@ class Method extends WC_Shipping_Method {
 	public function __construct( $instance_id = 0 ) {
 		$this->id                 = self::ID;
 		$this->instance_id        = absint( $instance_id );
-		$this->method_title       = __( 'Canada Post', 'wpruby-canada-post-shipping-for-woocommerce' );
-		$this->method_description = __( 'Live Canada Post rates from your Canada Post account.', 'wpruby-canada-post-shipping-for-woocommerce' );
+		$this->method_title       = __( 'Canada Post', 'wpruby-shipping-rates-canada-post' );
+		$this->method_description = __( 'Live Canada Post rates from your Canada Post account.', 'wpruby-shipping-rates-canada-post' );
 		$this->supports           = array( 'shipping-zones', 'instance-settings' );
 
 		$this->init_instance_form_fields();
 		$this->init_settings();
 
-		$this->title      = $this->get_option( 'title', __( 'Canada Post', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+		$this->title      = $this->get_option( 'title', __( 'Canada Post', 'wpruby-shipping-rates-canada-post' ) );
 		$this->tax_status = $this->get_option( 'tax_status', 'taxable' );
 
 		add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_admin_options' ) );
@@ -61,61 +61,61 @@ class Method extends WC_Shipping_Method {
 	private function init_instance_form_fields(): void {
 		$this->instance_form_fields = array(
 			'title'                => array(
-				'title'       => __( 'Method title', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'title'       => __( 'Method title', 'wpruby-shipping-rates-canada-post' ),
 				'type'        => 'text',
-				'default'     => __( 'Canada Post', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'default'     => __( 'Canada Post', 'wpruby-shipping-rates-canada-post' ),
 				'desc_tip'    => true,
-				'description' => __( 'Names this method in the zone list. Customers see the service names, like Expedited Parcel.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'description' => __( 'Names this method in the zone list. Customers see the service names, like Expedited Parcel.', 'wpruby-shipping-rates-canada-post' ),
 			),
 			'tax_status'           => array(
-				'title'       => __( 'Tax status', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'title'       => __( 'Tax status', 'wpruby-shipping-rates-canada-post' ),
 				'type'        => 'select',
 				'class'       => 'wc-enhanced-select',
 				'default'     => 'taxable',
 				'options'     => array(
-					'taxable' => __( 'Taxable', 'wpruby-canada-post-shipping-for-woocommerce' ),
-					'none'    => _x( 'None', 'Tax status', 'wpruby-canada-post-shipping-for-woocommerce' ),
+					'taxable' => __( 'Taxable', 'wpruby-shipping-rates-canada-post' ),
+					'none'    => _x( 'None', 'Tax status', 'wpruby-shipping-rates-canada-post' ),
 				),
-				'description' => __( 'Canada Post prices include GST/HST/PST. When shipping is taxable, the rate is shown before tax and WooCommerce adds your tax. When it is not, the rate includes Canada Post\'s tax.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'description' => __( 'Canada Post prices include GST/HST/PST. When shipping is taxable, the rate is shown before tax and WooCommerce adds your tax. When it is not, the rate includes Canada Post\'s tax.', 'wpruby-shipping-rates-canada-post' ),
 			),
 			'services'             => array(
-				'title'   => __( 'Services', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'title'   => __( 'Services', 'wpruby-shipping-rates-canada-post' ),
 				'type'    => 'wpruby_cps_services',
 				'default' => '',
 			),
 			'quote_type'           => array(
-				'title'       => __( 'Rate type', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'title'       => __( 'Rate type', 'wpruby-shipping-rates-canada-post' ),
 				'type'        => 'select',
 				'class'       => 'wc-enhanced-select',
 				'default'     => 'account',
 				'options'     => array(
-					'account'    => __( 'From the account type', 'wpruby-canada-post-shipping-for-woocommerce' ),
-					'commercial' => __( 'Business rates (your contract or Solutions for Small Business prices)', 'wpruby-canada-post-shipping-for-woocommerce' ),
-					'counter'    => __( 'Retail rates (post office counter prices)', 'wpruby-canada-post-shipping-for-woocommerce' ),
+					'account'    => __( 'From the account type', 'wpruby-shipping-rates-canada-post' ),
+					'commercial' => __( 'Business rates (your contract or Solutions for Small Business prices)', 'wpruby-shipping-rates-canada-post' ),
+					'counter'    => __( 'Retail rates (post office counter prices)', 'wpruby-shipping-rates-canada-post' ),
 				),
 				'desc_tip'    => true,
-				'description' => __( 'Business rates are what you pay. Retail rates are what a customer would pay at the counter.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'description' => __( 'Business rates are what you pay. Retail rates are what a customer would pay at the counter.', 'wpruby-shipping-rates-canada-post' ),
 			),
 			'handling_fee'         => array(
-				'title'       => __( 'Handling fee', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'title'       => __( 'Handling fee', 'wpruby-shipping-rates-canada-post' ),
 				'type'        => 'price',
 				'default'     => '',
 				'placeholder' => '0.00',
 				'desc_tip'    => true,
-				'description' => __( 'A fixed amount added to every rate. Use a negative amount for a discount.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'description' => __( 'A fixed amount added to every rate. Use a negative amount for a discount.', 'wpruby-shipping-rates-canada-post' ),
 			),
 			'handling_fee_percent' => array(
-				'title'       => __( 'Handling fee (%)', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'title'       => __( 'Handling fee (%)', 'wpruby-shipping-rates-canada-post' ),
 				'type'        => 'decimal',
 				'default'     => '',
 				'placeholder' => '0',
 				'desc_tip'    => true,
-				'description' => __( 'A percentage of the rate, added after the fixed fee. Use a negative value for a discount.', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'description' => __( 'A percentage of the rate, added after the fixed fee. Use a negative value for a discount.', 'wpruby-shipping-rates-canada-post' ),
 			),
 			'show_transit'         => array(
-				'title'   => __( 'Delivery estimate', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'title'   => __( 'Delivery estimate', 'wpruby-shipping-rates-canada-post' ),
 				'type'    => 'checkbox',
-				'label'   => __( 'Show the expected transit time next to each service', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				'label'   => __( 'Show the expected transit time next to each service', 'wpruby-shipping-rates-canada-post' ),
 				'default' => 'yes',
 			),
 		);
@@ -150,9 +150,9 @@ class Method extends WC_Shipping_Method {
 		$rows    = $this->services_config();
 		$names   = Services::names();
 		$regions = array(
-			Services::REGION_DOMESTIC      => __( 'Canada', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			Services::REGION_USA           => __( 'United States', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			Services::REGION_INTERNATIONAL => __( 'International', 'wpruby-canada-post-shipping-for-woocommerce' ),
+			Services::REGION_DOMESTIC      => __( 'Canada', 'wpruby-shipping-rates-canada-post' ),
+			Services::REGION_USA           => __( 'United States', 'wpruby-shipping-rates-canada-post' ),
+			Services::REGION_INTERNATIONAL => __( 'International', 'wpruby-shipping-rates-canada-post' ),
 		);
 
 		ob_start();
@@ -163,9 +163,9 @@ class Method extends WC_Shipping_Method {
 				<table class="widefat striped wpruby-cps-services">
 					<thead>
 						<tr>
-							<th class="check-column"><span class="screen-reader-text"><?php esc_html_e( 'Offer', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></span></th>
-							<th><?php esc_html_e( 'Service', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></th>
-							<th><?php esc_html_e( 'Name at checkout', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></th>
+							<th class="check-column"><span class="screen-reader-text"><?php esc_html_e( 'Offer', 'wpruby-shipping-rates-canada-post' ); ?></span></th>
+							<th><?php esc_html_e( 'Service', 'wpruby-shipping-rates-canada-post' ); ?></th>
+							<th><?php esc_html_e( 'Name at checkout', 'wpruby-shipping-rates-canada-post' ); ?></th>
 						</tr>
 					</thead>
 					<?php foreach ( $regions as $region => $region_name ) : ?>
@@ -191,7 +191,7 @@ class Method extends WC_Shipping_Method {
 									<span class="wpruby-cps-services__count" data-total="<?php echo esc_attr( (string) count( $region_rows ) ); ?>">
 										<?php
 										/* translators: 1: services turned on, 2: services in the group */
-										echo esc_html( sprintf( __( '%1$d of %2$d on', 'wpruby-canada-post-shipping-for-woocommerce' ), $region_on, count( $region_rows ) ) );
+										echo esc_html( sprintf( __( '%1$d of %2$d on', 'wpruby-shipping-rates-canada-post' ), $region_on, count( $region_rows ) ) );
 										?>
 									</span>
 									</span>
@@ -210,7 +210,7 @@ class Method extends WC_Shipping_Method {
 										<code class="wpruby-cps-services__code"><?php echo esc_html( $code ); ?></code>
 									</td>
 									<td>
-										<input type="text" class="regular-text" name="<?php echo esc_attr( "{$field}[{$code}][name]" ); ?>" value="<?php echo esc_attr( (string) $row['name'] ); ?>" placeholder="<?php echo esc_attr( $names[ $code ] ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: service name */ __( 'Name at checkout for %s', 'wpruby-canada-post-shipping-for-woocommerce' ), $names[ $code ] ) ); ?>">
+										<input type="text" class="regular-text" name="<?php echo esc_attr( "{$field}[{$code}][name]" ); ?>" value="<?php echo esc_attr( (string) $row['name'] ); ?>" placeholder="<?php echo esc_attr( $names[ $code ] ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: service name */ __( 'Name at checkout for %s', 'wpruby-shipping-rates-canada-post' ), $names[ $code ] ) ); ?>">
 										<input type="hidden" name="<?php echo esc_attr( "{$field}[{$code}][adjustment]" ); ?>" value="<?php echo esc_attr( (string) $row['adjustment'] ); ?>">
 										<input type="hidden" name="<?php echo esc_attr( "{$field}[{$code}][adjustment_type]" ); ?>" value="<?php echo esc_attr( (string) $row['adjustment_type'] ); ?>">
 										<input type="hidden" name="<?php echo esc_attr( "{$field}[{$code}][order]" ); ?>" value="<?php echo esc_attr( (string) $row['order'] ); ?>">
@@ -220,7 +220,7 @@ class Method extends WC_Shipping_Method {
 						</tbody>
 					<?php endforeach; ?>
 				</table>
-				<p class="description"><?php esc_html_e( 'Customers see only the ticked services that Canada Post can deliver to their address. Leave the name empty to use Canada Post\'s name.', 'wpruby-canada-post-shipping-for-woocommerce' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Customers see only the ticked services that Canada Post can deliver to their address. Leave the name empty to use Canada Post\'s name.', 'wpruby-shipping-rates-canada-post' ); ?></p>
 			</td>
 		</tr>
 		<?php
@@ -261,8 +261,8 @@ class Method extends WC_Shipping_Method {
 			echo '<div class="notice notice-warning inline"><p>' . wp_kses_post(
 				sprintf(
 					/* translators: %s: link to the Canada Post settings */
-					__( 'Customers see no Canada Post rates until you connect your Canada Post account in %s.', 'wpruby-canada-post-shipping-for-woocommerce' ),
-					'<a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=shipping&section=' . SettingsSection::ID ) ) . '">' . esc_html__( 'the Canada Post settings', 'wpruby-canada-post-shipping-for-woocommerce' ) . '</a>'
+					__( 'Customers see no Canada Post rates until you connect your Canada Post account in %s.', 'wpruby-shipping-rates-canada-post' ),
+					'<a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=shipping&section=' . SettingsSection::ID ) ) . '">' . esc_html__( 'the Canada Post settings', 'wpruby-shipping-rates-canada-post' ) . '</a>'
 				)
 			) . '</p></div>';
 		}
@@ -317,9 +317,9 @@ class Method extends WC_Shipping_Method {
 			$settings,
 			sprintf(
 				/* translators: 1: number of parcels, 2: quoted services */
-				__( 'Canada Post quoted %1$d parcel(s): %2$s', 'wpruby-canada-post-shipping-for-woocommerce' ),
+				__( 'Canada Post quoted %1$d parcel(s): %2$s', 'wpruby-shipping-rates-canada-post' ),
 				count( $parcels ),
-				$quotes ? implode( ', ', array_keys( $quotes ) ) : __( 'no services', 'wpruby-canada-post-shipping-for-woocommerce' )
+				$quotes ? implode( ', ', array_keys( $quotes ) ) : __( 'no services', 'wpruby-shipping-rates-canada-post' )
 			),
 			'notice'
 		);
@@ -333,7 +333,7 @@ class Method extends WC_Shipping_Method {
 			$label = '' !== (string) $row['name'] ? (string) $row['name'] : Services::name( $code, $quote['name'] );
 			if ( 'yes' === $this->get_option( 'show_transit', 'yes' ) && null !== $quote['transit'] ) {
 				/* translators: %d: business days in transit */
-				$label .= ' ' . sprintf( _n( '(est. %d business day)', '(est. %d business days)', $quote['transit'], 'wpruby-canada-post-shipping-for-woocommerce' ), $quote['transit'] );
+				$label .= ' ' . sprintf( _n( '(est. %d business day)', '(est. %d business days)', $quote['transit'], 'wpruby-shipping-rates-canada-post' ), $quote['transit'] );
 			}
 			$rates[] = array(
 				'id'        => $this->get_rate_id( $code ),

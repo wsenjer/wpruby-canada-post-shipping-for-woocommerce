@@ -51,21 +51,21 @@ class Services {
 	 */
 	public static function names(): array {
 		return array(
-			'DOM.RP'      => __( 'Regular Parcel', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'DOM.EP'      => __( 'Expedited Parcel', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'DOM.XP'      => __( 'Xpresspost', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'DOM.PC'      => __( 'Priority', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'DOM.LIB'     => __( 'Library Books', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'USA.EP'      => __( 'Expedited Parcel USA', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'USA.XP'      => __( 'Xpresspost USA', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'USA.TP'      => __( 'Tracked Packet – USA', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'USA.SP.AIR'  => __( 'Small Packet USA Air', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'INT.XP'      => __( 'Xpresspost International', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'INT.TP'      => __( 'Tracked Packet – International', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'INT.SP.AIR'  => __( 'Small Packet International Air', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'INT.SP.SURF' => __( 'Small Packet International Surface', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'INT.IP.AIR'  => __( 'International Parcel Air', 'wpruby-canada-post-shipping-for-woocommerce' ),
-			'INT.IP.SURF' => __( 'International Parcel Surface', 'wpruby-canada-post-shipping-for-woocommerce' ),
+			'DOM.RP'      => __( 'Regular Parcel', 'wpruby-shipping-rates-canada-post' ),
+			'DOM.EP'      => __( 'Expedited Parcel', 'wpruby-shipping-rates-canada-post' ),
+			'DOM.XP'      => __( 'Xpresspost', 'wpruby-shipping-rates-canada-post' ),
+			'DOM.PC'      => __( 'Priority', 'wpruby-shipping-rates-canada-post' ),
+			'DOM.LIB'     => __( 'Library Books', 'wpruby-shipping-rates-canada-post' ),
+			'USA.EP'      => __( 'Expedited Parcel USA', 'wpruby-shipping-rates-canada-post' ),
+			'USA.XP'      => __( 'Xpresspost USA', 'wpruby-shipping-rates-canada-post' ),
+			'USA.TP'      => __( 'Tracked Packet – USA', 'wpruby-shipping-rates-canada-post' ),
+			'USA.SP.AIR'  => __( 'Small Packet USA Air', 'wpruby-shipping-rates-canada-post' ),
+			'INT.XP'      => __( 'Xpresspost International', 'wpruby-shipping-rates-canada-post' ),
+			'INT.TP'      => __( 'Tracked Packet – International', 'wpruby-shipping-rates-canada-post' ),
+			'INT.SP.AIR'  => __( 'Small Packet International Air', 'wpruby-shipping-rates-canada-post' ),
+			'INT.SP.SURF' => __( 'Small Packet International Surface', 'wpruby-shipping-rates-canada-post' ),
+			'INT.IP.AIR'  => __( 'International Parcel Air', 'wpruby-shipping-rates-canada-post' ),
+			'INT.IP.SURF' => __( 'International Parcel Surface', 'wpruby-shipping-rates-canada-post' ),
 		);
 	}
 

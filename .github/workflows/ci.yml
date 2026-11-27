@@ -33,11 +33,11 @@ jobs:
         run: make pack
       - name: Check the zip contents
         run: |
-          unzip -l wpruby-canada-post-shipping-for-woocommerce.zip > contents.txt
-          grep -q 'wpruby-canada-post-shipping-for-woocommerce/wpruby-canada-post-shipping-for-woocommerce.php' contents.txt
-          grep -q 'wpruby-canada-post-shipping-for-woocommerce/readme.txt' contents.txt
+          unzip -l wpruby-shipping-rates-canada-post.zip > contents.txt
+          grep -q 'wpruby-shipping-rates-canada-post/wpruby-shipping-rates-canada-post.php' contents.txt
+          grep -q 'wpruby-shipping-rates-canada-post/readme.txt' contents.txt
           ! grep -E '/(tests|vendor-bin|\.github|\.wordpress-org)/' contents.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: wpruby-canada-post-shipping-for-woocommerce
-          path: wpruby-canada-post-shipping-for-woocommerce.zip
+          name: wpruby-shipping-rates-canada-post
+          path: wpruby-shipping-rates-canada-post.zip

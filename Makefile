@@ -1,4 +1,4 @@
-SLUG := wpruby-canada-post-shipping-for-woocommerce
+SLUG := wpruby-shipping-rates-canada-post
 
 .PHONY: test pack
 

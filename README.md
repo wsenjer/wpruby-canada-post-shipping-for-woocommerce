@@ -1,4 +1,4 @@
-# WPRuby Canada Post Shipping for WooCommerce
+# WPRuby Shipping Rates for Canada Post and WooCommerce
 
 Free wordpress.org plugin: live Canada Post rates at WooCommerce checkout, from Canada Post's Rating API (Developer Portal, OAuth 2.0 client credentials).
 
@@ -8,7 +8,7 @@ Free wordpress.org plugin: live Canada Post rates at WooCommerce checkout, from 
 
 ## Layout
 
-- `wpruby-canada-post-shipping-for-woocommerce.php`: bootstrap (conflict check, autoloader, HPOS and Blocks compatibility).
+- `wpruby-shipping-rates-canada-post.php`: bootstrap (conflict check, autoloader, HPOS and Blocks compatibility).
 - `src/Api/Client.php`: token and Get Rates (`POST /rating/v1/prices`), with retries and error parsing.
 - `src/Rates/`: request building and validation, packing, per-parcel quoting and caching.
 - `src/Shipping/Method.php`: the zone method; `src/Shipping/SettingsSection.php`: the settings section.

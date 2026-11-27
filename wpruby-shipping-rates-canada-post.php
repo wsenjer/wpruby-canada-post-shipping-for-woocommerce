@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name:          WPRuby Canada Post Shipping for WooCommerce
- * Plugin URI:           https://wordpress.org/plugins/wpruby-canada-post-shipping-for-woocommerce/
+ * Plugin Name:          WPRuby Shipping Rates for Canada Post and WooCommerce
+ * Plugin URI:           https://wordpress.org/plugins/wpruby-shipping-rates-canada-post/
  * Description:          Live Canada Post shipping rates at WooCommerce checkout: Regular Parcel, Expedited Parcel, Xpresspost, Priority, and US and international services, from your own Canada Post account.
  * Version:              1.0.0
  * Author:               WPRuby
  * Author URI:           https://wpruby.com
- * Text Domain:          wpruby-canada-post-shipping-for-woocommerce
+ * Text Domain:          wpruby-shipping-rates-canada-post
  * Domain Path:          /languages
  * Requires at least:    6.2
  * Requires PHP:         7.4
@@ -34,14 +34,17 @@ function wpruby_cps_conflicting_plugin_is_active(): bool {
 }
 
 if ( wpruby_cps_conflicting_plugin_is_active() ) {
-	add_action(
-		'admin_notices',
-		static function () {
-			if ( ! current_user_can( 'activate_plugins' ) ) {
-				return;
+	// Said once, in this plugin's own row on the Plugins screen: no admin notices.
+	add_filter(
+		'plugin_row_meta',
+		static function ( $meta, $file ) {
+			if ( plugin_basename( __FILE__ ) === $file ) {
+				$meta[] = '<strong>' . esc_html__( 'Paused: WPRuby\'s Canada Post Pro plugin is active and handles Canada Post shipping. You can deactivate this plugin.', 'wpruby-shipping-rates-canada-post' ) . '</strong>';
 			}
-			echo '<div class="notice notice-info"><p>' . esc_html__( 'Another WPRuby Canada Post plugin is active and already provides Canada Post shipping, so WPRuby Canada Post Shipping is paused. Your shipping zones keep working. You can deactivate this plugin.', 'wpruby-canada-post-shipping-for-woocommerce' ) . '</p></div>';
-		}
+			return $meta;
+		},
+		10,
+		2
 	);
 	return;
 }

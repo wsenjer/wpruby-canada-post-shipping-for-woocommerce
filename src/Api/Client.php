@@ -71,7 +71,7 @@ class Client {
 	 */
 	private function send( string $path, array $body ): array {
 		if ( get_transient( $this->throttle_key() ) ) {
-			throw new ApiException( esc_html__( 'Canada Post is limiting requests from this store.', 'wpruby-canada-post-shipping-for-woocommerce' ), 'THROTTLED', 429 );
+			throw new ApiException( esc_html__( 'Canada Post is limiting requests from this store.', 'wpruby-shipping-rates-canada-post' ), 'THROTTLED', 429 );
 		}
 
 		$attempt = 0;
@@ -98,7 +98,7 @@ class Client {
 					continue;
 				}
 				/* translators: %s: error message from WordPress */
-				throw new ApiException( esc_html( sprintf( __( 'Could not reach Canada Post: %s', 'wpruby-canada-post-shipping-for-woocommerce' ), $response->get_error_message() ) ), 'NETWORK', 0 );
+				throw new ApiException( esc_html( sprintf( __( 'Could not reach Canada Post: %s', 'wpruby-shipping-rates-canada-post' ), $response->get_error_message() ) ), 'NETWORK', 0 );
 			}
 
 			$status  = (int) wp_remote_retrieve_response_code( $response );
@@ -107,7 +107,7 @@ class Client {
 
 			if ( $status >= 200 && $status < 300 ) {
 				if ( ! is_array( $decoded ) ) {
-					throw new ApiException( esc_html__( 'Canada Post sent a response that is not JSON.', 'wpruby-canada-post-shipping-for-woocommerce' ), 'BAD_RESPONSE', (int) $status );
+					throw new ApiException( esc_html__( 'Canada Post sent a response that is not JSON.', 'wpruby-shipping-rates-canada-post' ), 'BAD_RESPONSE', (int) $status );
 				}
 				return $decoded;
 			}
@@ -137,7 +137,7 @@ class Client {
 		$key    = $this->settings->api_key();
 		$secret = $this->settings->api_secret();
 		if ( '' === $key || '' === $secret ) {
-			throw new ApiException( esc_html__( 'The Canada Post API key and secret are not set.', 'wpruby-canada-post-shipping-for-woocommerce' ), 'AUTH', 0 );
+			throw new ApiException( esc_html__( 'The Canada Post API key and secret are not set.', 'wpruby-shipping-rates-canada-post' ), 'AUTH', 0 );
 		}
 
 		$cached = get_transient( $this->token_key() );
@@ -165,7 +165,7 @@ class Client {
 
 		if ( is_wp_error( $response ) ) {
 			/* translators: %s: error message from WordPress */
-			throw new ApiException( esc_html( sprintf( __( 'Could not reach Canada Post: %s', 'wpruby-canada-post-shipping-for-woocommerce' ), $response->get_error_message() ) ), 'NETWORK', 0 );
+			throw new ApiException( esc_html( sprintf( __( 'Could not reach Canada Post: %s', 'wpruby-shipping-rates-canada-post' ), $response->get_error_message() ) ), 'NETWORK', 0 );
 		}
 
 		$status  = (int) wp_remote_retrieve_response_code( $response );
@@ -178,7 +178,7 @@ class Client {
 				throw new ApiException( esc_html( self::error_message( $decoded, $raw, $status ) ), 'NETWORK', (int) $status );
 			}
 			/* translators: %s: Canada Post's error message */
-			throw new ApiException( esc_html( sprintf( __( 'Canada Post rejected the API key and secret: %s', 'wpruby-canada-post-shipping-for-woocommerce' ), self::error_message( $decoded, $raw, $status ) ) ), 'AUTH', 401 );
+			throw new ApiException( esc_html( sprintf( __( 'Canada Post rejected the API key and secret: %s', 'wpruby-shipping-rates-canada-post' ), self::error_message( $decoded, $raw, $status ) ) ), 'AUTH', 401 );
 		}
 
 		$ttl = (int) ( $decoded['expires_in'] ?? 3600 ) - self::TOKEN_MARGIN;
@@ -248,7 +248,7 @@ class Client {
 		}
 		$raw = trim( wp_strip_all_tags( $raw ) );
 		/* translators: %d: HTTP status code */
-		return '' !== $raw ? substr( $raw, 0, 200 ) : sprintf( __( 'HTTP %d from Canada Post.', 'wpruby-canada-post-shipping-for-woocommerce' ), $status );
+		return '' !== $raw ? substr( $raw, 0, 200 ) : sprintf( __( 'HTTP %d from Canada Post.', 'wpruby-shipping-rates-canada-post' ), $status );
 	}
 
 	/**

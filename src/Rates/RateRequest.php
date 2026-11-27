@@ -37,17 +37,17 @@ class RateRequest {
 	public static function build( Settings $settings, array $parcel, string $country, string $postcode, array $services, string $quote_type ): array {
 		$customer = $settings->customer_number();
 		if ( '' === $customer || strlen( $customer ) > 10 ) {
-			throw self::invalid( esc_html__( 'The Canada Post customer number is missing or too long.', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+			throw self::invalid( esc_html__( 'The Canada Post customer number is missing or too long.', 'wpruby-shipping-rates-canada-post' ) );
 		}
 
 		$origin = $settings->origin_postcode();
 		if ( ! self::is_canadian_postcode( $origin ) ) {
-			throw self::invalid( esc_html__( 'The origin postal code must be a Canadian postal code, like K1A 0B1.', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+			throw self::invalid( esc_html__( 'The origin postal code must be a Canadian postal code, like K1A 0B1.', 'wpruby-shipping-rates-canada-post' ) );
 		}
 
 		$weight = round( (float) ( $parcel['weight'] ?? 0 ), 3 );
 		if ( $weight <= 0 || $weight > 99.999 ) {
-			throw self::invalid( esc_html__( 'The parcel weight must be more than 0 and at most 99.999 kg.', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+			throw self::invalid( esc_html__( 'The parcel weight must be more than 0 and at most 99.999 kg.', 'wpruby-shipping-rates-canada-post' ) );
 		}
 
 		$quote_type = self::QUOTE_COUNTER === $quote_type ? self::QUOTE_COUNTER : self::QUOTE_COMMERCIAL;
@@ -93,19 +93,19 @@ class RateRequest {
 		if ( 'CA' === $country ) {
 			$postcode = strtoupper( (string) preg_replace( '/\s+/', '', $postcode ) );
 			if ( ! self::is_canadian_postcode( $postcode ) ) {
-				throw self::invalid( esc_html__( 'Enter a valid Canadian postal code to see Canada Post rates.', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+				throw self::invalid( esc_html__( 'Enter a valid Canadian postal code to see Canada Post rates.', 'wpruby-shipping-rates-canada-post' ) );
 			}
 			return array( 'domestic' => array( 'postalCode' => $postcode ) );
 		}
 		if ( 'US' === $country ) {
 			$zip = trim( $postcode );
 			if ( ! preg_match( '/^\d{5}(-\d{4})?$/', $zip ) ) {
-				throw self::invalid( esc_html__( 'Enter a valid US ZIP code to see Canada Post rates.', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+				throw self::invalid( esc_html__( 'Enter a valid US ZIP code to see Canada Post rates.', 'wpruby-shipping-rates-canada-post' ) );
 			}
 			return array( 'unitedStates' => array( 'zipCode' => $zip ) );
 		}
 		if ( ! preg_match( '/^[A-Z]{2}$/', $country ) ) {
-			throw self::invalid( esc_html__( 'The destination country is missing.', 'wpruby-canada-post-shipping-for-woocommerce' ) );
+			throw self::invalid( esc_html__( 'The destination country is missing.', 'wpruby-shipping-rates-canada-post' ) );
 		}
 		$international = array( 'countryCode' => $country );
 		$postcode      = substr( trim( $postcode ), 0, 10 );

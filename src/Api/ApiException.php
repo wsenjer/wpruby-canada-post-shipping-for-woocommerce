@@ -54,13 +54,13 @@ class ApiException extends \Exception {
 	 */
 	public function hint(): string {
 		if ( 'AUTH' === $this->error_code || 401 === $this->status ) {
-			return __( 'Check the API key and secret on WooCommerce → Settings → Shipping → Canada Post. They come from your app on the Canada Post Developer Portal.', 'wpruby-canada-post-shipping-for-woocommerce' );
+			return __( 'Check the API key and secret on WooCommerce → Settings → Shipping → Canada Post. They come from your app on the Canada Post Developer Portal.', 'wpruby-shipping-rates-canada-post' );
 		}
 		if ( 403 === $this->status ) {
-			return __( 'Add the Rating API product to your app on the Canada Post Developer Portal, and check the customer number.', 'wpruby-canada-post-shipping-for-woocommerce' );
+			return __( 'Add the Rating API product to your app on the Canada Post Developer Portal, and check the customer number.', 'wpruby-shipping-rates-canada-post' );
 		}
 		if ( 'THROTTLED' === $this->error_code || 429 === $this->status ) {
-			return __( 'Canada Post is limiting requests. Rates will be requested again in a minute.', 'wpruby-canada-post-shipping-for-woocommerce' );
+			return __( 'Canada Post is limiting requests. Rates will be requested again in a minute.', 'wpruby-shipping-rates-canada-post' );
 		}
 		return '';
 	}
