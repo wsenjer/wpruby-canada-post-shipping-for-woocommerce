@@ -252,7 +252,8 @@ class Method extends WC_Shipping_Method {
 	}
 
 	/**
-	 * The zone settings, with a warning while the account isn't connected.
+	 * The zone settings, with a warning while the account isn't connected, then what
+	 * Canada Post Pro adds.
 	 */
 	public function admin_options() {
 		parent::admin_options();
@@ -266,6 +267,9 @@ class Method extends WC_Shipping_Method {
 				)
 			) . '</p></div>';
 		}
+		echo '<div class="wpruby-cps-admin wpruby-cps-zone-pro">';
+		\WPRuby\CanadaPostShipping\Admin\Upsell::card( 'zone-settings' );
+		echo '</div>';
 	}
 
 	/**

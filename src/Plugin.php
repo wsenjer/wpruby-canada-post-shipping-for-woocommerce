@@ -8,6 +8,7 @@
 namespace WPRuby\CanadaPostShipping;
 
 use WPRuby\CanadaPostShipping\Admin\ConnectionCheck;
+use WPRuby\CanadaPostShipping\Admin\Upsell;
 use WPRuby\CanadaPostShipping\Shipping\Method;
 use WPRuby\CanadaPostShipping\Shipping\SettingsSection;
 
@@ -53,13 +54,14 @@ class Plugin {
 	}
 
 	/**
-	 * Settings first, then support.
+	 * Settings first, then Pro and support.
 	 *
 	 * @param array $links Plugin row links.
 	 */
 	public function action_links( $links ): array {
 		$links = (array) $links;
 		array_unshift( $links, '<a href="' . esc_url( self::settings_url() ) . '">' . esc_html__( 'Settings', 'wpruby-shipping-rates-canada-post' ) . '</a>' );
+		$links[] = '<a href="' . esc_url( Upsell::url( 'plugins' ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Get the Pro version', 'wpruby-shipping-rates-canada-post' ) . '</a>';
 		$links[] = '<a href="https://wordpress.org/support/plugin/wpruby-shipping-rates-canada-post/" target="_blank" rel="noopener">' . esc_html__( 'Support', 'wpruby-shipping-rates-canada-post' ) . '</a>';
 		return $links;
 	}

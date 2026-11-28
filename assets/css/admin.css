@@ -345,6 +345,50 @@
 	border-left-color: var(--wpruby-cps-error);
 }
 
+/* Canada Post Pro */
+
+.wpruby-cps-pro {
+	border-top: 4px solid var(--wpruby-cps-red);
+}
+
+.wpruby-cps-card.wpruby-cps-pro h3 .dashicons {
+	color: var(--wpruby-cps-red);
+}
+
+.wpruby-cps-pro__list {
+	margin: 0 0 12px;
+}
+
+.wpruby-cps-pro__list li {
+	display: flex;
+	align-items: flex-start;
+	gap: 6px;
+	margin: 0 0 6px;
+}
+
+.wpruby-cps-pro__list .dashicons {
+	flex: none;
+	color: var(--wpruby-cps-ok);
+}
+
+.wpruby-cps-pro p {
+	margin: 0 0 8px;
+}
+
+.wp-core-ui .wpruby-cps-sidebar .button.wpruby-cps-pro__button {
+	width: 100%;
+	text-align: center;
+}
+
+.wpruby-cps-pro__note {
+	color: var(--wpruby-cps-muted);
+	font-size: 12px;
+}
+
+.wpruby-cps-zone-pro {
+	max-width: 760px;
+}
+
 /* Help links */
 
 .wpruby-cps-links {

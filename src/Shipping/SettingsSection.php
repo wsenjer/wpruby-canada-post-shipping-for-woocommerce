@@ -8,6 +8,7 @@
 namespace WPRuby\CanadaPostShipping\Shipping;
 
 use WC_Shipping_Method;
+use WPRuby\CanadaPostShipping\Admin\Upsell;
 use WPRuby\CanadaPostShipping\Settings;
 
 defined( 'ABSPATH' ) || exit;
@@ -381,6 +382,8 @@ class SettingsSection extends WC_Shipping_Method {
 							?>
 						</div>
 					</div>
+
+					<?php Upsell::card( 'settings' ); ?>
 
 					<div class="wpruby-cps-card">
 						<div class="wpruby-cps-card__head">

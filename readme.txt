@@ -1,4 +1,4 @@
-=== WPRuby Shipping Rates for Canada Post ===
+=== WPRuby Shipping Rates for Canada Post and WooCommerce ===
 Contributors: waseem_senjer, wprubyplugins
 Tags: canada post, shipping rates, woocommerce shipping, canada, shipping calculator
 Requires at least: 6.2
@@ -26,9 +26,22 @@ Show your customers live Canada Post shipping rates at checkout, quoted from you
 * **Test mode:** connect a Canada Post Test app; its sample rates are shown only to shop managers.
 * **Block and classic checkout:** rates appear in both, and the plugin is compatible with WooCommerce's order storage (HPOS).
 
+= Need more? Upgrade to Canada Post Pro =
+
+[Canada Post Pro](https://wpruby.com/plugin/woocommerce-canada-post-extension-pro/?utm_source=canadapost-lite&utm_medium=readme&utm_campaign=freetopro&utm_content=pro) adds everything after checkout:
+
+* Print Canada Post labels from the order screen, one order at a time or in bulk.
+* End-of-day manifests, pickups and return labels.
+* Tracking numbers and status updates in order emails and My Account.
+* Delivery to a post office chosen at checkout, and AddressComplete address search.
+* Your own boxes with 3D packing, free shipping thresholds, per-service price adjustments and a fallback rate when Canada Post is down.
+
+Your shipping zones keep their settings when you upgrade.
+
 = Links =
 
 * [How to show Canada Post shipping rates at WooCommerce checkout](https://wpruby.com/canada-post-shipping-rates-woocommerce/)
+* [Canada Post Pro](https://wpruby.com/plugin/woocommerce-canada-post-extension-pro/?utm_source=canadapost-lite&utm_medium=readme&utm_campaign=freetopro&utm_content=links)
 * [Support forum](https://wordpress.org/support/plugin/wpruby-shipping-rates-canada-post/)
 * [Source code on GitHub](https://github.com/wsenjer/wpruby-shipping-rates-canada-post)
 
@@ -76,7 +89,11 @@ Canada Post quotes in CAD. Set the CAD exchange rate in the Canada Post settings
 
 = Can I print shipping labels? =
 
-No. This plugin shows live Canada Post rates at checkout; it doesn't create labels.
+Not with the free version. [Canada Post Pro](https://wpruby.com/plugin/woocommerce-canada-post-extension-pro/?utm_source=canadapost-lite&utm_medium=readme&utm_campaign=freetopro&utm_content=faq-labels) prints labels from the order screen, in bulk, with manifests, tracking and returns.
+
+= How do I upgrade to Pro? =
+
+Install and activate Canada Post Pro. While Pro is active, this free plugin stops running, and Pro uses your existing Canada Post shipping zones. Enter your API key and secret in Pro, then deactivate and delete the free plugin.
 
 = Can I keep the API key out of the database? =
 
