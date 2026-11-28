@@ -1,4 +1,4 @@
-=== WPRuby Shipping Rates for Canada Post and WooCommerce ===
+=== WPRuby Shipping Rates for Canada Post ===
 Contributors: waseem_senjer, wprubyplugins
 Tags: canada post, shipping rates, woocommerce shipping, canada, shipping calculator
 Requires at least: 6.2
