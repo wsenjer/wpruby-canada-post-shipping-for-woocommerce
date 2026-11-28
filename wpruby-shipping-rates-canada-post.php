@@ -3,7 +3,7 @@
  * Plugin Name:          WPRuby Shipping Rates for Canada Post and WooCommerce
  * Plugin URI:           https://wordpress.org/plugins/wpruby-shipping-rates-canada-post/
  * Description:          Live Canada Post shipping rates at WooCommerce checkout: Regular Parcel, Expedited Parcel, Xpresspost, Priority, and US and international services, from your own Canada Post account.
- * Version:              1.0.0
+ * Version:              1.0.1
  * Author:               WPRuby
  * Author URI:           https://wpruby.com
  * Text Domain:          wpruby-shipping-rates-canada-post
@@ -49,7 +49,7 @@ if ( wpruby_cps_conflicting_plugin_is_active() ) {
 	return;
 }
 
-define( 'WPRUBY_CPS_VERSION', '1.0.0' );
+define( 'WPRUBY_CPS_VERSION', '1.0.1' );
 define( 'WPRUBY_CPS_FILE', __FILE__ );
 define( 'WPRUBY_CPS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WPRUBY_CPS_URL', plugin_dir_url( __FILE__ ) );

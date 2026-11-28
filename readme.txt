@@ -4,7 +4,7 @@ Tags: canada post, shipping rates, woocommerce shipping, canada, shipping calcul
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,10 @@ Development happens on GitHub: [github.com/wsenjer/wpruby-shipping-rates-canada-
 
 == Changelog ==
 
+= 1.0.1 =
+* Added: An "Upgrade to Canada Post Pro" card on the Canada Post settings and zone settings screens, and a link in the plugin row.
+* Changed: Plugin name is now "WPRuby Shipping Rates for Canada Post and WooCommerce".
+
 = 1.0.0 =
 * Added: Live Canada Post rates for Canada, the US and international destinations, from Canada Post's Rating API.
 * Added: Per-zone services with custom names, business or retail rates, handling fees and delivery estimates.
@@ -130,9 +134,12 @@ Development happens on GitHub: [github.com/wsenjer/wpruby-shipping-rates-canada-
 
 == Upgrade Notice ==
 
+= 1.0.1 =
+Adds information about Canada Post Pro to the settings screens. No changes to rates.
+
 = 1.0.0 =
 First release.
 
 == Disclaimer ==
 
-Canada Post and the Canada Post services named here are trademarks of Canada Post Corporation. This plugin is made by WPRuby and is not affiliated with or endorsed by Canada Post.
+Canada Post and the Canada Post services named here are trademarks of Canada Post Corporation. WooCommerce is a trademark of Automattic Inc. This plugin is made by WPRuby and is not affiliated with or endorsed by Canada Post or Automattic.
